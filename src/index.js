@@ -13,11 +13,14 @@ const projects = projectStore.getList();
  */
 function createPathRewrite(projects) {
   projects = projects || [];
-  let pathRewrite = {};
-  for (let pro in projects) {
-    pathRewrite[`^/${pro.identity}`] = "";
+  let pathRewrite = {},
+    proxy = {};
+  for (let pro of projects) {
+    proxy = pro.proxy;
+    proxy.status ? (pathRewrite[`^/${pro.identity}`] = "") : void 0;
   }
-  return router;
+  console.log(pathRewrite);
+  return pathRewrite;
 }
 
 /**
@@ -26,18 +29,28 @@ function createPathRewrite(projects) {
  */
 function createRouter(projects) {
   projects = projects || [];
-  let router = {};
-  for (let pro in projects) {
-    router[`^/${pro.identity}`] = pro.target;
+  let router = {},
+    proxy = {};
+  for (let pro of projects) {
+    proxy = pro.proxy;
+    proxy.status ? (router[`/${pro.identity}`] = proxy.target) : void 0;
   }
   return router;
 }
 
 app.use(
   proxy({
+    target: "http://www.geetemp.com",
     pathRewrite: createPathRewrite(projects),
     router: createRouter(projects),
-    changeOrigin: true
+    changeOrigin: true,
+    onProxyRes: (proxyRes, req, res) => {
+      // console.log("proxyRes", proxyRes);
+      // console.log("-------------------------------------------");
+      // console.log("req", req);
+      // console.log("-------------------------------------------");
+      // console.log("res", res);
+    }
   })
 );
 
