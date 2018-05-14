@@ -19,7 +19,6 @@ function createPathRewrite(projects) {
     proxy = pro.proxy;
     proxy.status ? (pathRewrite[`^/${pro.identity}`] = "") : void 0;
   }
-  console.log(pathRewrite);
   return pathRewrite;
 }
 
@@ -38,18 +37,37 @@ function createRouter(projects) {
   return router;
 }
 
+/**
+ * 获取需要代理的路径
+ * @param {*} projects
+ */
+function getProxyPaths(projects) {
+  projects = projects || [];
+  let proxyPaths = [];
+  for (let pro of projects) {
+    proxyPaths.push(`^/${pro.identity}`);
+  }
+  return proxyPaths;
+}
+
 app.use(
+  getProxyPaths(projects),
   proxy({
-    target: "http://www.geetemp.com",
+    target: appConfig.proxyTarget,
     pathRewrite: createPathRewrite(projects),
     router: createRouter(projects),
     changeOrigin: true,
+    //IncomingMessage,IncomingMessage,ServerResponse
     onProxyRes: (proxyRes, req, res) => {
-      // console.log("proxyRes", proxyRes);
-      // console.log("-------------------------------------------");
-      // console.log("req", req);
-      // console.log("-------------------------------------------");
-      // console.log("res", res);
+      proxyRes.setEncoding(appConfig.encoding);
+      let proxiedServerBack = "";
+      proxyRes.on("data", data => {
+        proxiedServerBack += data;
+      });
+      proxyRes.on("end", () => {
+        console.log(proxiedServerBack);
+        console.log(proxyRes.req.getHeader("host") + req.url);
+      });
     }
   })
 );

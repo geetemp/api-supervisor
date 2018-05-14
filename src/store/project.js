@@ -11,7 +11,7 @@ export default {
       {
         name: "科锐官网",
         identity: "career",
-        proxy: { target: "http://www.careerintlinc.com", status: 0 }
+        proxy: { target: "http://www.careerintlinc.com", status: 1 }
       }
     ];
   }
