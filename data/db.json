@@ -1,0 +1,24 @@
+{
+  "projects": [
+    {
+      "name": "即派",
+      "identity": "gp",
+      "proxy": { "target": "http://www.geetemp.com", "status": 1 }
+    },
+    {
+      "name": "科锐官网",
+      "identity": "career",
+      "proxy": { "target": "http://www.careerintlinc.com", "status": 0 }
+    }
+  ],
+
+  "interfaces": [
+    {
+      "id": "1",
+      "pro": "gp",
+      "url": "/v3_0/offshore/info",
+      "desc": "获取离岸外包",
+      "method": "get"
+    }
+  ]
+}

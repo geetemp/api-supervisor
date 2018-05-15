@@ -43,9 +43,11 @@ function createRouter(projects) {
  */
 function getProxyPaths(projects) {
   projects = projects || [];
-  let proxyPaths = [];
+  let proxyPaths = [],
+    proxy = {};
   for (let pro of projects) {
-    proxyPaths.push(`^/${pro.identity}`);
+    proxy = pro.proxy;
+    proxy.status ? proxyPaths.push(`^/${pro.identity}`) : void 0;
   }
   return proxyPaths;
 }
