@@ -12,13 +12,20 @@
     }
   ],
 
-  "interfaces": [
+  "api": [
     {
       "id": "1",
       "pro": "gp",
       "url": "/v3_0/offshore/info",
       "desc": "获取离岸外包",
-      "method": "get"
+      "method": "get",
+      "params": []
+    }
+  ],
+
+  "responses": [
+    {
+      "apiId": "1"
     }
   ]
 }
