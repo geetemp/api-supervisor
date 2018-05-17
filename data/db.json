@@ -12,20 +12,25 @@
     }
   ],
 
-  "api": [
+  "apis": [
     {
       "id": "1",
       "pro": "gp",
       "url": "/v3_0/offshore/info",
       "desc": "获取离岸外包",
       "method": "get",
-      "params": []
+      "paramsDeclare": [],
+      "resultDeclare": []
     }
   ],
 
-  "responses": [
+  "apiStack": [
     {
-      "apiId": "1"
+      "id": "md5",
+      "apiId": "1",
+      "params": {},
+      "result": { "code": 0, "msg": "OK", "data": { "price_base": 7500 } },
+      "timestamp": "23232233"
     }
   ]
 }
