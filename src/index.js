@@ -68,7 +68,9 @@ app.use(
       });
       proxyRes.on("end", () => {
         console.log(proxiedServerBack);
-        console.log(proxyRes.req.getHeader("host") + req.url);
+        console.log(proxyRes.req.agent);
+        const { protocol } = proxyRes.req.agent;
+        console.log(protocol, proxyRes.req.getHeader("host") + req.url);
       });
     }
   })
