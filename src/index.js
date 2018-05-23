@@ -62,6 +62,7 @@ app.use(
     //IncomingMessage,IncomingMessage,ServerResponse
     onProxyRes: (proxyRes, req, res) => {
       proxyRes.setEncoding(appConfig.encoding);
+      res.ab='world proxy';
       let proxiedServerBack = "";
       proxyRes.on("data", data => {
         proxiedServerBack += data;
@@ -72,6 +73,7 @@ app.use(
         const { protocol } = proxyRes.req.agent;
         console.log(protocol, proxyRes.req.getHeader("host") + req.url);
       });
+      res.end(res.ab);
     }
   })
 );

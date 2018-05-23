@@ -5,5 +5,14 @@ export default {
   */
   getList: () => {
     return db.get("projects").value();
+  },
+
+  /**
+   * 根据host名查找项目
+   */
+  getOneByhost:(host)=>{
+    return db.get('projects').find((item)=>{
+      return item.proxy.target==='host';
+    }).value();
   }
 };
