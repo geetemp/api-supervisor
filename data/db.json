@@ -3,7 +3,7 @@
     {
       "name": "即派",
       "identity": "gp",
-      "proxy": { "target": "http://www.geetemp.com", "status": 1 }
+      "proxy": { "target": "http://www.geetemp.com", "status": 0 }
     },
     {
       "name": "科锐官网",

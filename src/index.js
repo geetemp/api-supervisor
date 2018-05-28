@@ -52,6 +52,18 @@ function getProxyPaths(projects) {
   return proxyPaths;
 }
 
+function getSimulatePaths(projects) {
+  projects = projects || [];
+  let simulatePaths = [],
+    proxy = {};
+  for (let pro of projects) {
+    proxy = pro.proxy;
+    !proxy.status ? simulatePaths.push(`^/${pro.identity}`) : void 0;
+  }
+  return simulatePaths;
+}
+
+//走代理路由
 app.use(
   getProxyPaths(projects),
   proxy({
@@ -62,7 +74,7 @@ app.use(
     //IncomingMessage,IncomingMessage,ServerResponse
     onProxyRes: (proxyRes, req, res) => {
       proxyRes.setEncoding(appConfig.encoding);
-      res.ab='world proxy';
+      res.ab = "world proxy";
       let proxiedServerBack = "";
       proxyRes.on("data", data => {
         proxiedServerBack += data;
@@ -73,10 +85,18 @@ app.use(
         const { protocol } = proxyRes.req.agent;
         console.log(protocol, proxyRes.req.getHeader("host") + req.url);
       });
-      res.end(res.ab);
+      // res.end(res.ab);
     }
   })
 );
+
+//走模拟接口路由
+app.use(getSimulatePaths(projects), (req, res) => {
+  console.log(req.path);
+  console.log(req.baseUrl);
+  console.log(req.body);
+  res.end("abc");
+});
 
 app.listen(appConfig.port, () => {
   console.log(`Api Supervisor Server running on port ${appConfig.port}`);

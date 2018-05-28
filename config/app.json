@@ -1,5 +1,5 @@
 {
   "port": "3000",
   "encoding": "utf8",
-  "proxyTarget": "http://www.geetemp.com"
+  "proxyTarget": "http://local.com"
 }
