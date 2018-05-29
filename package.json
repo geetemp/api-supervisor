@@ -6,7 +6,8 @@
   "author": "common",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon ./dev.js"
+    "start": "nodemon ./dev.js",
+    "test": "jest"
   },
   "dependencies": {
     "express": "^4.16.3",
@@ -14,9 +15,13 @@
     "lowdb": "^1.0.0"
   },
   "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-jest": "^23.0.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-env": "^1.7.0",
     "babel-register": "^6.26.0",
-    "nodemon": "^1.17.4"
+    "jest": "^23.0.1",
+    "nodemon": "^1.17.4",
+    "regenerator-runtime": "^0.11.1"
   }
 }

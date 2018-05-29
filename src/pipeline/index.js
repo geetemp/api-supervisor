@@ -1,6 +1,9 @@
 import { isArray } from "../utils";
 
-export class Back {
+/**
+ * 处理管道
+ */
+export default class Pipeline {
   findProject = (req, res) => {};
   findApi = (req, res) => {};
   findApiStack = (req, res) => {};
@@ -21,6 +24,7 @@ export class Back {
   }
 
   execute(req, res) {
+    const { findProject, findApi, findApiStack, handleBackActionList } = this;
     const executeActionList = [
       findProject,
       findApi,
@@ -28,10 +32,13 @@ export class Back {
       ...handleBackActionList
     ];
     for (const executeAction of executeActionList) {
-      const actionResult = executeAction();
-      if (actionResult === undefined)
-        throw new Error("Action must return value");
-      if (checkActionResult(actionResult)) throw new Error("back has only one");
+      if (executeAction) {
+        const actionResult = executeAction(req, res);
+        if (actionResult === undefined)
+          throw new Error("Action must return value");
+        if (!this.checkActionResult(actionResult))
+          throw new Error("back has only one");
+      }
     }
   }
 }

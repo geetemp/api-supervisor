@@ -1,6 +1,7 @@
 import express from "express";
 import proxy from "http-proxy-middleware";
 import projectStore from "./store/project";
+import simulatePipeline from "./pipeline/simulatePipeline";
 
 const app = express();
 const appConfig = require("../config/app.json");
@@ -84,18 +85,15 @@ app.use(
         console.log(proxyRes.req.agent);
         const { protocol } = proxyRes.req.agent;
         console.log(protocol, proxyRes.req.getHeader("host") + req.url);
+        console.log(req.baseUrl, req.path);
       });
-      // res.end(res.ab);
     }
   })
 );
 
 //走模拟接口路由
 app.use(getSimulatePaths(projects), (req, res) => {
-  console.log(req.path);
-  console.log(req.baseUrl);
-  console.log(req.body);
-  res.end("abc");
+  simulatePipeline.execute(req, res);
 });
 
 app.listen(appConfig.port, () => {

@@ -10,9 +10,24 @@ export default {
   /**
    * 根据host名查找项目
    */
-  getOneByhost:(host)=>{
-    return db.get('projects').find((item)=>{
-      return item.proxy.target==='host';
-    }).value();
+  getOneByhost: host => {
+    return db
+      .get("projects")
+      .find(item => {
+        return item.proxy.target === host;
+      })
+      .value();
+  },
+
+  /**
+   * 根据identity查找项目
+   */
+  getOneByIdentity: identity => {
+    return db
+      .get("projects")
+      .find(item => {
+        return item.identity === identity;
+      })
+      .value();
   }
 };

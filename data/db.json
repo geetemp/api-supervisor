@@ -3,7 +3,7 @@
     {
       "name": "即派",
       "identity": "gp",
-      "proxy": { "target": "http://www.geetemp.com", "status": 0 }
+      "proxy": { "target": "http://www.geetemp.com", "status": 1 }
     },
     {
       "name": "科锐官网",
@@ -21,7 +21,8 @@
       "method": "get",
       "paramsDeclare": [],
       "resultDeclare": [],
-      "head": "se323421"
+      "head": "se323421",
+      "stable": "se323421"
     }
   ],
 
@@ -30,7 +31,7 @@
       "id": "se323421",
       "apiId": "1",
       "params": {},
-      "result": { "code": 0, "msg": "OK", "data": { "price_base": 7500 } },
+      "result": { "code": 0, "msg": "OK", "data": { "price_bases": 8000 } },
       "timestamp": "23232233"
     }
   ]
