@@ -2,6 +2,7 @@ import express from "express";
 import proxy from "http-proxy-middleware";
 import projectStore from "./store/project";
 import simulatePipeline from "./pipeline/simulatePipeline";
+import { toJSONSchema } from "./utils";
 
 const app = express();
 const appConfig = require("../config/app.json");
@@ -64,37 +65,42 @@ function getSimulatePaths(projects) {
   return simulatePaths;
 }
 
+const simulatePaths = getSimulatePaths(projects);
+const proxyPaths = getProxyPaths(projects);
+
 //走代理路由
-app.use(
-  getProxyPaths(projects),
-  proxy({
-    target: appConfig.proxyTarget,
-    pathRewrite: createPathRewrite(projects),
-    router: createRouter(projects),
-    changeOrigin: true,
-    //IncomingMessage,IncomingMessage,ServerResponse
-    onProxyRes: (proxyRes, req, res) => {
-      proxyRes.setEncoding(appConfig.encoding);
-      res.ab = "world proxy";
-      let proxiedServerBack = "";
-      proxyRes.on("data", data => {
-        proxiedServerBack += data;
-      });
-      proxyRes.on("end", () => {
-        console.log(proxiedServerBack);
-        console.log(proxyRes.req.agent);
-        const { protocol } = proxyRes.req.agent;
-        console.log(protocol, proxyRes.req.getHeader("host") + req.url);
-        console.log(req.baseUrl, req.path);
-      });
-    }
-  })
-);
+proxyPaths.length &&
+  app.use(
+    proxyPaths,
+    proxy({
+      target: appConfig.proxyTarget,
+      pathRewrite: createPathRewrite(projects),
+      router: createRouter(projects),
+      changeOrigin: true,
+      //IncomingMessage,IncomingMessage,ServerResponse
+      onProxyRes: (proxyRes, req, res) => {
+        proxyRes.setEncoding(appConfig.encoding);
+        let proxiedServerBack = "";
+        proxyRes.on("data", data => {
+          proxiedServerBack += data;
+        });
+        proxyRes.on("end", () => {
+          console.log(proxiedServerBack);
+          console.log("toJSONSchema", toJSONSchema(proxiedServerBack));
+          // console.log(proxyRes.req.agent);
+          // const { protocol } = proxyRes.req.agent;
+          // console.log(protocol, proxyRes.req.getHeader("host") + req.url);
+          // console.log(req.baseUrl, req.path);
+        });
+      }
+    })
+  );
 
 //走模拟接口路由
-app.use(getSimulatePaths(projects), (req, res) => {
-  simulatePipeline.execute(req, res);
-});
+simulatePaths &&
+  app.use(simulatePaths, (req, res) => {
+    simulatePipeline.execute(req, res);
+  });
 
 app.listen(appConfig.port, () => {
   console.log(`Api Supervisor Server running on port ${appConfig.port}`);
