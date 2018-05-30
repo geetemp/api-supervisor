@@ -10,6 +10,7 @@ test("apiStore getOne", () => {
     method: "get",
     paramsDeclare: [],
     resultDeclare: [],
-    head: "se323421"
+    head: "se323421",
+    stable: "se323421"
   });
 });

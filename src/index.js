@@ -86,7 +86,10 @@ proxyPaths.length &&
         });
         proxyRes.on("end", () => {
           console.log(proxiedServerBack);
-          console.log("toJSONSchema", toJSONSchema(proxiedServerBack));
+          console.log(
+            "toJSONSchema",
+            JSON.stringify(toJSONSchema(proxiedServerBack))
+          );
           // console.log(proxyRes.req.agent);
           // const { protocol } = proxyRes.req.agent;
           // console.log(protocol, proxyRes.req.getHeader("host") + req.url);
