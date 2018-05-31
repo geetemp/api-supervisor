@@ -2,6 +2,7 @@ import express from "express";
 import proxy from "http-proxy-middleware";
 import projectStore from "./store/project";
 import simulatePipeline from "./pipeline/simulatePipeline";
+import proxyPipeline from "./pipeline/proxyPipeline";
 import { toJSONSchema } from "./utils";
 
 const app = express();
@@ -85,11 +86,15 @@ proxyPaths.length &&
           proxiedServerBack += data;
         });
         proxyRes.on("end", () => {
-          console.log(proxiedServerBack);
-          console.log(
-            "toJSONSchema",
-            JSON.stringify(toJSONSchema(proxiedServerBack))
-          );
+          const proxiedSBackObj = JSON.parse(proxiedServerBack);
+          res.locals.proxiedServerBack = proxiedSBackObj;
+          //supervisorStatus 接口状态，根据接口状态，返回不同的数据结构
+          res.locals.supervisorStatus = proxiedSBackObj[appConfig.resStatusKey];
+          proxyPipeline.execute(req, res);
+          // console.log(
+          //   "toJSONSchema",
+          //   JSON.stringify(toJSONSchema(proxiedServerBack))
+          // );
           // console.log(proxyRes.req.agent);
           // const { protocol } = proxyRes.req.agent;
           // console.log(protocol, proxyRes.req.getHeader("host") + req.url);
@@ -102,6 +107,7 @@ proxyPaths.length &&
 //走模拟接口路由
 simulatePaths &&
   app.use(simulatePaths, (req, res) => {
+    res.locals.supervisorStatus = parseInt(req.param("supervisorStatus", 0));
     simulatePipeline.execute(req, res);
   });
 

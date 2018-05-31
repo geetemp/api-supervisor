@@ -1,36 +1,10 @@
 import Pipeline from "./index";
-import projectStore from "../store/project";
-import apiStore from "../store/api";
 import apiStackStore from "../store/apiStack";
-
-/**
- * 查找Api
- * @param {*} req
- * @param {*} res
- */
-function findApi(req, res) {
-  let { baseUrl, path } = req;
-  const api = apiStore.getOne(baseUrl.substring(1), path);
-  res.locals.api = api;
-  return api;
-}
-
-/**
- * 查找某个接口的返回结果
- * @param {*} req
- * @param {*} res
- */
-function findApiStack(req, res) {
-  const { api } = res.locals;
-  const apiRes = apiStackStore.getHeadStack(api.stable);
-  res.locals.apiRes = apiRes;
-  return apiRes;
-}
-
-function logApiStack(req, res) {
-  console.log("logApiStack", res.locals.apiRes);
-  return res.locals.apiRes;
-}
+import apiStatusStore from "../store/apiStatus";
+import { findApi, findApiStatus, findApiStack } from "./baseHandles";
+import { toJSONSchema, getTimestamp } from "../utils";
+var md5 = require("md5");
+var jsondiffpatch = require("jsondiffpatch");
 
 /**
  * 处理api代理返回结果
@@ -41,11 +15,45 @@ function logApiStack(req, res) {
  */
 function handleProxyApiRes(req, res) {
   const { proxiedServerBack, apiRes } = res.locals;
+  const delta = jsondiffpatch.diff(
+    toJSONSchema(JSON.stringify(apiRes.result)),
+    toJSONSchema(JSON.stringify(proxiedServerBack))
+  );
+  //有差异
+  if (delta) {
+    const { apiStatus } = res.locals;
+    storeProxiedServerBack(proxiedServerBack, apiStatus);
+  }
+  jsondiffpatch.console.log(delta);
+}
+
+function response(req, res) {
+  const { proxiedServerBack } = res.locals;
+  res.json(proxiedServerBack);
 }
 
 const proxyPipeline = new Pipeline();
-proxyPipeline.init(undefined, findApi, findApiStack);
-proxyPipeline.addHandleBackWrap(logApiStack);
-proxyPipeline.addHandleBackWrap(response);
+proxyPipeline.addHandleBackWrap([findApi, findApiStatus, findApiStack]);
+proxyPipeline.addHandleBackWrap(handleProxyApiRes);
 
 export default proxyPipeline;
+
+/**
+ * 保存新的被代理服务器返回结果
+ */
+function storeProxiedServerBack(newBack, apiStatus, params = {}) {
+  const id = md5(newBack);
+  if (!apiStackStore.getStackById(id)) {
+    //生成待存储stack
+    const willStoreStack = {
+      id,
+      apiStatusId: apiStatus.id,
+      params,
+      result: newBack,
+      timestamp: getTimestamp()
+    };
+
+    apiStackStore.addStack(willStoreStack);
+    apiStatusStore.updateHead(apiStatus.id, apiStatus.status, id);
+  }
+}

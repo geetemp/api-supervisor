@@ -10,6 +10,13 @@ export function isEmptyObj(obj) {
 }
 
 /**
+ * 获取当前时间戳
+ */
+export function getTimestamp() {
+  return new Date().getTime();
+}
+
+/**
  * json转成 JSON Schema
  * @param {*} json
  */

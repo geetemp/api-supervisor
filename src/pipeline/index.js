@@ -4,19 +4,12 @@ import { isArray } from "../utils";
  * 处理管道
  */
 export default class Pipeline {
-  findProject = (req, res) => {};
-  findApi = (req, res) => {};
-  findApiStack = (req, res) => {};
   handleBackActionList = [];
 
-  init(findProject, findApi, findApiStack) {
-    this.findProject = findProject;
-    this.findApi = findApi;
-    this.findApiStack = findApiStack;
-  }
-
   addHandleBackWrap(handle) {
-    this.handleBackActionList.push(handle);
+    !isArray(handle)
+      ? this.handleBackActionList.push(handle)
+      : (this.handleBackActionList = this.handleBackActionList.concat(handle));
   }
 
   checkActionResult(res) {
@@ -24,21 +17,15 @@ export default class Pipeline {
   }
 
   execute(req, res) {
-    const { findProject, findApi, findApiStack, handleBackActionList } = this;
-    const executeActionList = [
-      findProject,
-      findApi,
-      findApiStack,
-      ...handleBackActionList
-    ];
-    for (const executeAction of executeActionList) {
-      if (executeAction) {
-        const actionResult = executeAction(req, res);
-        if (actionResult === undefined)
-          throw new Error("Action must return value");
-        if (!this.checkActionResult(actionResult))
-          throw new Error("back has only one");
-      }
+    const { handleBackActionList } = this;
+    for (const executeAction of handleBackActionList) {
+      // if (executeAction) {
+      executeAction && executeAction(req, res);
+      // if (actionResult === undefined)
+      //   throw new Error("Action must return value");
+      // if (!this.checkActionResult(actionResult))
+      //   throw new Error("back has only one");
+      // }
     }
   }
 }
