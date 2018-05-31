@@ -2,6 +2,7 @@ import Pipeline from "./index";
 import apiStackStore from "../store/apiStack";
 import apiStatusStore from "../store/apiStatus";
 import { findApi, findApiStatus, findApiStack } from "./baseHandles";
+import { storeProxiedServerBack } from "../service/apiService";
 import { toJSONSchema, getTimestamp } from "../utils";
 var md5 = require("md5");
 var jsondiffpatch = require("jsondiffpatch");
@@ -15,14 +16,15 @@ var jsondiffpatch = require("jsondiffpatch");
  */
 function handleProxyApiRes(req, res) {
   const { proxiedServerBack, apiRes } = res.locals;
+  const proxiedSBackSchema = toJSONSchema(JSON.stringify(proxiedServerBack));
   const delta = jsondiffpatch.diff(
     toJSONSchema(JSON.stringify(apiRes.result)),
-    toJSONSchema(JSON.stringify(proxiedServerBack))
+    proxiedSBackSchema
   );
   //有差异
   if (delta) {
     const { apiStatus } = res.locals;
-    storeProxiedServerBack(proxiedServerBack, apiStatus);
+    storeProxiedServerBack(proxiedSBackSchema, proxiedServerBack, apiStatus);
   }
   jsondiffpatch.console.log(delta);
 }
@@ -32,28 +34,8 @@ function response(req, res) {
   res.json(proxiedServerBack);
 }
 
-const proxyPipeline = new Pipeline();
+const proxyPipeline = new Pipeline("proxy");
 proxyPipeline.addHandleBackWrap([findApi, findApiStatus, findApiStack]);
 proxyPipeline.addHandleBackWrap(handleProxyApiRes);
 
 export default proxyPipeline;
-
-/**
- * 保存新的被代理服务器返回结果
- */
-function storeProxiedServerBack(newBack, apiStatus, params = {}) {
-  const id = md5(newBack);
-  if (!apiStackStore.getStackById(id)) {
-    //生成待存储stack
-    const willStoreStack = {
-      id,
-      apiStatusId: apiStatus.id,
-      params,
-      result: newBack,
-      timestamp: getTimestamp()
-    };
-
-    apiStackStore.addStack(willStoreStack);
-    apiStatusStore.updateHead(apiStatus.id, apiStatus.status, id);
-  }
-}

@@ -4,7 +4,12 @@ import { isArray } from "../utils";
  * 处理管道
  */
 export default class Pipeline {
+  type = "proxy";
   handleBackActionList = [];
+
+  constructor(type) {
+    this.type = type;
+  }
 
   addHandleBackWrap(handle) {
     !isArray(handle)
@@ -20,7 +25,7 @@ export default class Pipeline {
     const { handleBackActionList } = this;
     for (const executeAction of handleBackActionList) {
       // if (executeAction) {
-      executeAction && executeAction(req, res);
+      executeAction && executeAction(req, res, type);
       // if (actionResult === undefined)
       //   throw new Error("Action must return value");
       // if (!this.checkActionResult(actionResult))

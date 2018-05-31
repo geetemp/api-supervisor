@@ -8,7 +8,7 @@ import {
   response
 } from "./baseHandles";
 
-const simulatePipeline = new Pipeline();
+const simulatePipeline = new Pipeline("simulate");
 simulatePipeline.addHandleBackWrap([findApi, findApiStatus, findApiStack]);
 simulatePipeline.addHandleBackWrap(logApiStack);
 simulatePipeline.addHandleBackWrap(response);

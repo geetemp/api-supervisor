@@ -16,7 +16,8 @@
     "lodash": "^4.17.10",
     "lowdb": "^1.0.0",
     "md5": "^2.2.1",
-    "mockjs": "^1.0.1-beta3"
+    "mockjs": "^1.0.1-beta3",
+    "shortid": "^2.2.8"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",

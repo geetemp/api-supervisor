@@ -5,7 +5,7 @@
       "identity": "gp",
       "proxy": {
         "target": "http://www.geetemp.com",
-        "status": 1
+        "status": 0
       }
     },
     {
@@ -17,75 +17,7 @@
       }
     }
   ],
-  "apis": [
-    {
-      "id": "1",
-      "pro": "gp",
-      "url": "/v3_0/offshore/info",
-      "desc": "获取离岸外包",
-      "method": "get",
-      "paramsDeclare": [],
-      "resultDeclare": []
-    }
-  ],
-  "apiStatus": [
-    {
-      "id": "1",
-      "status": 0,
-      "apiId": "1",
-      "head": "3449c9e5e332f1dbb81505cd739fbf3f",
-      "stable": "se323421"
-    },
-    {
-      "id": "1",
-      "status": 1,
-      "apiId": "1",
-      "head": "se411312",
-      "stable": "se411312"
-    }
-  ],
-  "apiStack": [
-    {
-      "id": "se323421",
-      "apiStatusId": "1",
-      "params": {},
-      "result": {
-        "code": 0,
-        "msg": "OK",
-        "data": {
-          "price_bases": 8000,
-          "sub": [
-            {
-              "name": "common",
-              "age": 9
-            }
-          ]
-        }
-      },
-      "timestamp": "23232233"
-    },
-    {
-      "id": "se411312",
-      "apiStatusId": "1",
-      "params": {},
-      "result": {
-        "code": 1,
-        "msg": "请求失败"
-      },
-      "timestamp": "12123131"
-    },
-    {
-      "id": "3449c9e5e332f1dbb81505cd739fbf3f",
-      "apiStatusId": "1",
-      "params": {},
-      "result": {
-        "code": 0,
-        "msg": "OK",
-        "data": {
-          "price_base": 7500
-        }
-      },
-      "timestamp": 1527752955249
-    }
-  ]
+  "apis": [],
+  "apiStatus": [],
+  "apiStack": []
 }

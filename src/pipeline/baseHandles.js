@@ -1,15 +1,41 @@
 import apiStore from "../store/api";
 import apiStackStore from "../store/apiStack";
 import apiStatusStore from "../store/apiStatus";
+import { storeProxiedServerBack } from "../service/apiService";
+import { toJSONSchema } from "../utils";
+
 /**
  * 查找Api
  * @param {*} req
  * @param {*} res
  */
-function findApi(req, res) {
+function findApi(req, res, type) {
+  /**
+   * 没找到，则存储该Api
+   * @param {*} req
+   * @param {*} res
+   * @param {*} type
+   */
+  const notFind = (req, res, type) => {
+    //在模拟接口情况下
+    if (type === "simulate") {
+      return res.status("404").send("this api isn't proxied");
+    }
+    //代理情况下，则存储该接口
+    let { baseUrl, path, method } = req;
+    const api = {
+      pro: baseUrl.substring(1),
+      url: path,
+      desc: "",
+      method,
+      paramsDeclare: []
+    };
+    return apiStore.add(api);
+  };
+
   let { baseUrl, path } = req;
   const api = apiStore.getOne(baseUrl.substring(1), path);
-  res.locals.api = api;
+  return (res.locals.api = api || notFind(req, res, type));
 }
 
 /**
@@ -17,12 +43,25 @@ function findApi(req, res) {
  * @param {*} req
  * @param {*} res
  */
-function findApiStatus(req, res) {
+function findApiStatus(req, res, type) {
+  const notFind = (req, res, type) => {
+    if (type === "simulate") {
+      return res.status("404").send("this api status isn't proxied");
+    }
+    //代理情况下，则存储该接口状态
+    let { api, supervisorStatus } = req;
+    const apiStatus = {
+      status: supervisorStatus,
+      apiId: api.id,
+      head: "",
+      stable: "",
+      resultDeclare: []
+    };
+    return apiStatusStore.add(apiStatus);
+  };
   const { api, supervisorStatus } = res.locals;
-  res.locals.apiStatus = apiStatusStore.getOneByApiStatus(
-    api.id,
-    supervisorStatus
-  );
+  const apiStatus = apiStatusStore.getOneByApiStatus(api.id, supervisorStatus);
+  return (res.locals.apiStatus = apiStatus || notFind(req, res, type));
 }
 
 /**
@@ -30,10 +69,23 @@ function findApiStatus(req, res) {
  * @param {*} req
  * @param {*} res
  */
-function findApiStack(req, res) {
+function findApiStack(req, res, type) {
+  const notFind = (req, res, type) => {
+    if (type === "simulate") {
+      return res.status("404").send("this api stack isn't proxied");
+    }
+    //代理情况下，则存储该接口数据
+    const { proxiedServerBack, apiStatus } = res.locals;
+    const proxiedSBackSchema = toJSONSchema(JSON.stringify(proxiedServerBack));
+    return storeProxiedServerBack(
+      proxiedSBackSchema,
+      proxiedServerBack,
+      apiStatus
+    );
+  };
   const { apiStatus } = res.locals;
   const apiRes = apiStackStore.getHeadStack(apiStatus.stable);
-  res.locals.apiRes = apiRes;
+  return (res.locals.apiRes = apiRes || notFind(req, res, type));
 }
 
 /**
