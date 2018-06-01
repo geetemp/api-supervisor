@@ -19,7 +19,8 @@ function findApi(req, res, type) {
   const notFind = (req, res, type) => {
     //在模拟接口情况下
     if (type === "simulate") {
-      return res.status("404").send("this api isn't proxied");
+      res.status("404").send("this api isn't proxied");
+      return false;
     }
     //代理情况下，则存储该接口
     let { baseUrl, path, method } = req;
@@ -46,10 +47,11 @@ function findApi(req, res, type) {
 function findApiStatus(req, res, type) {
   const notFind = (req, res, type) => {
     if (type === "simulate") {
-      return res.status("404").send("this api status isn't proxied");
+      res.status("404").send("this api status isn't proxied");
+      return false;
     }
     //代理情况下，则存储该接口状态
-    let { api, supervisorStatus } = req;
+    let { api, supervisorStatus } = res.locals;
     const apiStatus = {
       status: supervisorStatus,
       apiId: api.id,
@@ -72,7 +74,8 @@ function findApiStatus(req, res, type) {
 function findApiStack(req, res, type) {
   const notFind = (req, res, type) => {
     if (type === "simulate") {
-      return res.status("404").send("this api stack isn't proxied");
+      res.status("404").send("this api stack isn't proxied");
+      return false;
     }
     //代理情况下，则存储该接口数据
     const { proxiedServerBack, apiStatus } = res.locals;
@@ -80,7 +83,9 @@ function findApiStack(req, res, type) {
     return storeProxiedServerBack(
       proxiedSBackSchema,
       proxiedServerBack,
-      apiStatus
+      apiStatus,
+      {},
+      true
     );
   };
   const { apiStatus } = res.locals;
@@ -95,6 +100,7 @@ function findApiStack(req, res, type) {
  */
 function logApiStack(req, res) {
   console.log("logApiStack", res.locals.apiRes);
+  return true;
 }
 
 /**

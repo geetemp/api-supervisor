@@ -48,3 +48,23 @@ const handleJSONSchema = (schema, parent) => {
     );
   }
 };
+
+/**
+ * JSON对象排序
+ * @param {*} obj
+ */
+export function sortObjectKeys(obj) {
+  return Object.keys(obj)
+    .sort()
+    .reduce((acc, key) => {
+      if (Array.isArray(obj[key])) {
+        acc[key] = obj[key].map(sortObjectKeys);
+      }
+      if (typeof obj[key] === "object") {
+        acc[key] = sortObjectKeys(obj[key]);
+      } else {
+        acc[key] = obj[key];
+      }
+      return acc;
+    }, {});
+}

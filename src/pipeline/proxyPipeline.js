@@ -17,15 +17,18 @@ var jsondiffpatch = require("jsondiffpatch");
 function handleProxyApiRes(req, res) {
   const { proxiedServerBack, apiRes } = res.locals;
   const proxiedSBackSchema = toJSONSchema(JSON.stringify(proxiedServerBack));
-  const delta = jsondiffpatch.diff(
-    toJSONSchema(JSON.stringify(apiRes.result)),
-    proxiedSBackSchema
+  const apiResSchema = toJSONSchema(JSON.stringify(apiRes.result));
+  const delta = jsondiffpatch.diff(apiResSchema, proxiedSBackSchema);
+  const { apiStatus } = res.locals;
+  //存储被代理接口数据
+  storeProxiedServerBack(
+    proxiedSBackSchema,
+    proxiedServerBack,
+    apiStatus,
+    {},
+    undefined,
+    delta !== undefined
   );
-  //有差异
-  if (delta) {
-    const { apiStatus } = res.locals;
-    storeProxiedServerBack(proxiedSBackSchema, proxiedServerBack, apiStatus);
-  }
   jsondiffpatch.console.log(delta);
 }
 

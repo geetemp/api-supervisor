@@ -13,6 +13,6 @@ export default {
     return db
       .get("apis")
       .push(api)
-      .write();
+      .write()[0];
   }
 };

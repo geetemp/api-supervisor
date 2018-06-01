@@ -165,5 +165,72 @@ test("get json schema", () => {
       }
     })
   );
-  console.log("jsonSchema", JSON.stringify(jsonSchema));
+  expect(jsonSchema).toEqual({
+    code: "Number",
+    msg: "String",
+    data: {
+      type: "Object",
+      profile: {
+        type: "Object",
+        id: "String",
+        name: "String",
+        position: "String",
+        phone: "String",
+        email: "String",
+        age: "String",
+        worktime: "String",
+        sex: "String",
+        marry: "String",
+        city: "String",
+        forward_city: "String",
+        salary_current: "String",
+        salary_expect: "String",
+        education: "String",
+        account_hh: "String",
+        appraisal: "String",
+        answer1: "String",
+        answer2: "String",
+        keyword: "String"
+      },
+      faq: {
+        type: "Array",
+        id: "String",
+        question: "String",
+        answer: "String",
+        created: "String"
+      },
+      edu: {
+        type: "Array",
+        id: "String",
+        school_name: "String",
+        major_name: "String",
+        begin_time: "String",
+        end_time: "String",
+        education: "String"
+      },
+      job: {
+        type: "Array",
+        id: "String",
+        company_name: "String",
+        department: "String",
+        supervisor: "String",
+        position: "String",
+        underling: "String",
+        begin_time: "String",
+        end_time: "String",
+        duty: "String"
+      },
+      project: {
+        type: "Array",
+        id: "String",
+        project_name: "String",
+        company_name: "String",
+        position: "String",
+        begin_time: "String",
+        end_time: "String",
+        description: "String",
+        duty: "String"
+      }
+    }
+  });
 });

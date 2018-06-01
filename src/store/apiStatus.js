@@ -5,22 +5,22 @@ export default {
   getOneByApiStatus: (apiId, status) => {
     return db
       .get("apiStatus")
-      .find({ id: apiId, status })
+      .find({ apiId: apiId, status })
       .value();
   },
 
-  updateHead: (apiId, status, head) => {
+  updateHead: (apiStatusId, status, head) => {
     return db
       .get("apiStatus")
-      .find({ id: apiId, status })
+      .find({ id: apiStatusId, status })
       .assign({ head })
       .write();
   },
 
-  updateStable: (apiId, status, stable) => {
+  updateStable: (apiStatusId, status, stable) => {
     return db
       .get("apiStatus")
-      .find({ id: apiId, status })
+      .find({ id: apiStatusId, status })
       .assign({ stable })
       .write();
   },
@@ -30,6 +30,6 @@ export default {
     return db
       .get("apiStatus")
       .push(apiStatus)
-      .write();
+      .write()[0];
   }
 };

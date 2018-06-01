@@ -22,15 +22,10 @@ export default class Pipeline {
   }
 
   execute(req, res) {
-    const { handleBackActionList } = this;
+    const { handleBackActionList, type } = this;
     for (const executeAction of handleBackActionList) {
-      // if (executeAction) {
-      executeAction && executeAction(req, res, type);
-      // if (actionResult === undefined)
-      //   throw new Error("Action must return value");
-      // if (!this.checkActionResult(actionResult))
-      //   throw new Error("back has only one");
-      // }
+      const isContinue = executeAction && executeAction(req, res, type);
+      if (!isContinue) break;
     }
   }
 }
