@@ -36,3 +36,7 @@ Json diff 测试
 自动打开浏览器，显示差异
 
 命令行工具: 查询历史接口返回，指定接口比较；查询代理项目；查询接口列表
+
+##### 资料
+
+http://www.albertgao.xyz/2017/05/24/how-to-test-expressjs-with-jest-and-supertest/
