@@ -27,9 +27,10 @@ export default {
 
   add: apiStatus => {
     apiStatus.id = shortid.generate();
-    return db
+    const apiStatusList = db
       .get("apiStatus")
       .push(apiStatus)
-      .write()[0];
+      .write();
+    return apiStatusList[apiStatusList.length - 1];
   }
 };

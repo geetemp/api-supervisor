@@ -17,65 +17,7 @@
       }
     }
   ],
-  "apis": [
-    {
-      "pro": "gp",
-      "url": "/v3_0/offshore/info",
-      "desc": "",
-      "method": "GET",
-      "paramsDeclare": [],
-      "id": "SJxV7VCyX"
-    }
-  ],
-  "apiStatus": [
-    {
-      "status": 0,
-      "apiId": "SJxV7VCyX",
-      "head": "eaf5bdddd8d5fa81a63246975fb3bba8",
-      "stable": "eaf5bdddd8d5fa81a63246975fb3bba8",
-      "resultDeclare": [],
-      "id": "H16rGP0JQ"
-    }
-  ],
-  "apiStack": [
-    {
-      "id": "eaf5bdddd8d5fa81a63246975fb3bba8",
-      "apiStatusId": "H16rGP0JQ",
-      "params": {},
-      "result": {
-        "code": 0,
-        "data": {
-          "price_base": 7500
-        },
-        "msg": "OK"
-      },
-      "timestamp": 1527833157335
-    },
-    {
-      "id": "a442f6a579b3063137741299224b5dcf",
-      "apiStatusId": "H16rGP0JQ",
-      "params": {},
-      "result": {
-        "code": 0,
-        "data": {
-          "price_bases": 7500
-        },
-        "msg": "OK"
-      },
-      "timestamp": 1527834237152
-    },
-    {
-      "id": "cf6d9f325330ec9e369f1c138e08b3d0",
-      "apiStatusId": "H16rGP0JQ",
-      "params": {},
-      "result": {
-        "data": {
-          "price_bases": 7500
-        },
-        "code": 0,
-        "msg": 5
-      },
-      "timestamp": 1527834296729
-    }
-  ]
+  "apis": [],
+  "apiStatus": [],
+  "apiStack": []
 }

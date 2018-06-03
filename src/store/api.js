@@ -10,9 +10,10 @@ export default {
   },
   add: api => {
     api.id = shortid.generate();
-    return db
+    const apiList = db
       .get("apis")
       .push(api)
-      .write()[0];
+      .write();
+    return apiList[apiList.length - 1];
   }
 };

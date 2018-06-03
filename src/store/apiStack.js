@@ -12,10 +12,11 @@ const apiStack = {
    * 新增一个stack
    */
   addStack: stack => {
-    return db
+    const apiStackList = db
       .get("apiStack")
       .push(stack)
-      .write()[0];
+      .write();
+    return apiStackList[apiStackList.length - 1];
   },
 
   /**
