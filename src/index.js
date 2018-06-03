@@ -86,12 +86,7 @@ proxyPaths.length &&
           proxiedServerBack += data;
         });
         proxyRes.on("end", () => {
-          // const proxiedSBackObj = JSON.parse(proxiedServerBack);
-          const proxiedSBackObj = {
-            code: 0,
-            data: { price_base: 7500 },
-            msg: "OK"
-          };
+          const proxiedSBackObj = JSON.parse(proxiedServerBack);
           res.locals.proxiedServerBack = proxiedSBackObj;
           //supervisorStatus 接口状态，根据接口状态，返回不同的数据结构
           res.locals.supervisorStatus = proxiedSBackObj[appConfig.resStatusKey];

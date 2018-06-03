@@ -17,7 +17,39 @@
       }
     }
   ],
-  "apis": [],
-  "apiStatus": [],
-  "apiStack": []
+  "apis": [
+    {
+      "pro": "gp",
+      "url": "/v3_0/offshore/info",
+      "desc": "",
+      "method": "GET",
+      "paramsDeclare": [],
+      "id": "r1HIXtWgQ"
+    }
+  ],
+  "apiStatus": [
+    {
+      "status": 0,
+      "apiId": "r1HIXtWgQ",
+      "head": "eaf5bdddd8d5fa81a63246975fb3bba8",
+      "stable": "eaf5bdddd8d5fa81a63246975fb3bba8",
+      "resultDeclare": [],
+      "id": "BJxBUXY-lm"
+    }
+  ],
+  "apiStack": [
+    {
+      "id": "eaf5bdddd8d5fa81a63246975fb3bba8",
+      "apiStatusId": "BJxBUXY-lm",
+      "params": {},
+      "result": {
+        "code": 0,
+        "data": {
+          "price_base": 7500
+        },
+        "msg": "OK"
+      },
+      "timestamp": 1528038221138
+    }
+  ]
 }
