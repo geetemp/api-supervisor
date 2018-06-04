@@ -19,13 +19,20 @@ const apiStack = {
     return apiStackList[apiStackList.length - 1];
   },
 
-  /**
-   * 根据Id获取stack
-   */
   getStackById: id => {
     return db
       .get("apiStack")
-      .find({ id: id })
+      .find({ id })
+      .value();
+  },
+
+  /**
+   * 根据Id和apiStatusId获取stack
+   */
+  getStackByIdAndApiStatusId: (id, apiStatusId) => {
+    return db
+      .get("apiStack")
+      .find({ id, apiStatusId })
       .value();
   }
 };

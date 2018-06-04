@@ -22,14 +22,14 @@ function storeProxiedServerBack(
 ) {
   //Json Schema按字母排序,并计算md5
   const id = md5(JSON.stringify(sortObjectKeys(proxiedSBackSchema)));
-  console.log(JSON.stringify(proxiedSBackSchema), id);
   //如果没有则新增一个apiStack作为head
-  if (isDiff && !apiStackStore.getStackById(id)) {
+  if (isDiff && !apiStackStore.getStackByIdAndApiStatusId(id, apiStatus.id)) {
     //生成待存储stack
     const willStoreStack = {
       id,
       apiStatusId: apiStatus.id,
       params,
+      resultDeclare: [],
       result: proxiedServerBack,
       timestamp: getTimestamp()
     };

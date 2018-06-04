@@ -27,19 +27,23 @@ Json diff 测试
 
 测试覆盖
 
-##### underline
-
-生成文档数据结构
-
-请求参数处理
-
 覆盖其他请求 method(post,put,delete 等)
 
+##### underline
+
 命令行工具: 查询历史接口返回，指定接口比较；查询代理项目；查询接口列表
+
+动态字段
 
 ##### optional
 
 自动打开浏览器，显示差异
+
+##### next target(auto create document)
+
+生成文档数据结构
+
+请求参数处理
 
 ##### 资料
 

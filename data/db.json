@@ -19,29 +19,51 @@
   ],
   "apis": [
     {
-      "pro": "gp",
+      "pro": "jp",
       "url": "/v3_0/offshore/info",
       "desc": "",
       "method": "GET",
       "paramsDeclare": [],
-      "id": "r1HIXtWgQ"
+      "id": "SJLoB5flQ"
+    },
+    {
+      "pro": "jp",
+      "url": "/v3_0/offshore/info",
+      "desc": "",
+      "method": "POST",
+      "paramsDeclare": [],
+      "id": "ryfIiBczgm"
     }
   ],
   "apiStatus": [
     {
       "status": 0,
-      "apiId": "r1HIXtWgQ",
+      "apiId": "SJLoB5flQ",
       "head": "eaf5bdddd8d5fa81a63246975fb3bba8",
       "stable": "eaf5bdddd8d5fa81a63246975fb3bba8",
-      "resultDeclare": [],
-      "id": "BJxBUXY-lm"
+      "id": "SyeUiH9GgQ"
+    },
+    {
+      "status": 1,
+      "apiId": "SJLoB5flQ",
+      "head": "4fcdd9edac5c526550ce4f19362a9a41",
+      "stable": "4fcdd9edac5c526550ce4f19362a9a41",
+      "id": "rkZLir9zlm"
+    },
+    {
+      "status": 0,
+      "apiId": "ryfIiBczgm",
+      "head": "af360ccc65dae5e76c0e38491c1c75ae",
+      "stable": "4fcdd9edac5c526550ce4f19362a9a41",
+      "id": "B1X8oHcfe7"
     }
   ],
   "apiStack": [
     {
       "id": "eaf5bdddd8d5fa81a63246975fb3bba8",
-      "apiStatusId": "BJxBUXY-lm",
+      "apiStatusId": "SyeUiH9GgQ",
       "params": {},
+      "resultDeclare": [],
       "result": {
         "code": 0,
         "data": {
@@ -49,7 +71,54 @@
         },
         "msg": "OK"
       },
-      "timestamp": 1528038221138
+      "timestamp": 1528108445700
+    },
+    {
+      "id": "4fcdd9edac5c526550ce4f19362a9a41",
+      "apiStatusId": "rkZLir9zlm",
+      "params": {},
+      "resultDeclare": [],
+      "result": {
+        "code": 1,
+        "msg": "提交失败"
+      },
+      "timestamp": 1528108445730
+    },
+    {
+      "id": "cf6d9f325330ec9e369f1c138e08b3d0",
+      "apiStatusId": "SyeUiH9GgQ",
+      "params": {},
+      "resultDeclare": [],
+      "result": {
+        "code": 0,
+        "data": {
+          "price_bases": 7500
+        },
+        "msg": 3
+      },
+      "timestamp": 1528108445744
+    },
+    {
+      "id": "4fcdd9edac5c526550ce4f19362a9a41",
+      "apiStatusId": "B1X8oHcfe7",
+      "params": {},
+      "resultDeclare": [],
+      "result": {
+        "code": 0,
+        "msg": "添加成功"
+      },
+      "timestamp": 1528108445768
+    },
+    {
+      "id": "af360ccc65dae5e76c0e38491c1c75ae",
+      "apiStatusId": "B1X8oHcfe7",
+      "params": {},
+      "resultDeclare": [],
+      "result": {
+        "code": 0,
+        "msg": 360
+      },
+      "timestamp": 1528108445789
     }
   ]
 }

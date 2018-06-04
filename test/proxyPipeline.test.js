@@ -18,7 +18,7 @@ beforeAll(() => {
   res.locals = {};
   req.baseUrl = "/jp";
   req.path = "/v3_0/offshore/info";
-  req.method = "get";
+  req.method = "GET";
 });
 
 test("no mock data,init api data", () => {
@@ -94,8 +94,38 @@ test("recover status 0 apiStack data", () => {
   expect(db.get("apiStack").value()[3]).toBe(undefined);
 });
 
-afterAll(() => {
-  db.set("apis", []).write();
-  db.set("apiStatus", []).write();
-  db.set("apiStack", []).write();
+test("same url & diff method in same project", () => {
+  req.baseUrl = "/jp";
+  req.path = "/v3_0/offshore/info";
+  req.method = "POST";
+  const proxiedSBackObj = {
+    code: 0,
+    msg: "添加成功"
+  };
+  res.locals.proxiedServerBack = proxiedSBackObj;
+  //supervisorStatus 接口状态，根据接口状态，返回不同的数据结构
+  res.locals.supervisorStatus = proxiedSBackObj["code"];
+  proxyPipeline.execute(req, res);
+  expect(db.get("apiStack").value()[3]).not.toBe(undefined);
+  expect(db.get("apiStack").value()[3].id).toBe(
+    db.get("apiStatus").value()[2].stable
+  );
+});
+
+test("same url & diff method in same project, modify result", () => {
+  req.baseUrl = "/jp";
+  req.path = "/v3_0/offshore/info";
+  req.method = "POST";
+  const proxiedSBackObj = {
+    code: 0,
+    msg: 360
+  };
+  res.locals.proxiedServerBack = proxiedSBackObj;
+  //supervisorStatus 接口状态，根据接口状态，返回不同的数据结构
+  res.locals.supervisorStatus = proxiedSBackObj["code"];
+  proxyPipeline.execute(req, res);
+  expect(db.get("apiStack").value()[4]).not.toBe(undefined);
+  expect(db.get("apiStack").value()[4].id).toBe(
+    db.get("apiStatus").value()[2].head
+  );
 });

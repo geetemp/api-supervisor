@@ -34,8 +34,8 @@ function findApi(req, res, type) {
     return apiStore.add(api);
   };
 
-  let { baseUrl, path } = req;
-  const api = apiStore.getOne(baseUrl.substring(1), path);
+  let { baseUrl, path, method } = req;
+  const api = apiStore.getOne(baseUrl.substring(1), path, method);
   return (res.locals.api = api || notFind(req, res, type));
 }
 
@@ -56,8 +56,7 @@ function findApiStatus(req, res, type) {
       status: supervisorStatus,
       apiId: api.id,
       head: "",
-      stable: "",
-      resultDeclare: []
+      stable: ""
     };
     return apiStatusStore.add(apiStatus);
   };

@@ -2,10 +2,10 @@ import db from "./dbInit";
 var shortid = require("shortid");
 
 export default {
-  getOne: (identity, url) => {
+  getOne: (identity, url, method) => {
     return db
       .get("apis")
-      .find({ pro: identity, url })
+      .find({ pro: identity, url, method })
       .value();
   },
   add: api => {
