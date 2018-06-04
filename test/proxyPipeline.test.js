@@ -16,7 +16,7 @@ beforeAll(() => {
   };
   res.send = function(str) {};
   res.locals = {};
-  req.baseUrl = "/jp";
+  req.baseUrl = "/gp";
   req.path = "/v3_0/offshore/info";
   req.method = "GET";
 });
@@ -95,7 +95,7 @@ test("recover status 0 apiStack data", () => {
 });
 
 test("same url & diff method in same project", () => {
-  req.baseUrl = "/jp";
+  req.baseUrl = "/gp";
   req.path = "/v3_0/offshore/info";
   req.method = "POST";
   const proxiedSBackObj = {
@@ -113,7 +113,7 @@ test("same url & diff method in same project", () => {
 });
 
 test("same url & diff method in same project, modify result", () => {
-  req.baseUrl = "/jp";
+  req.baseUrl = "/gp";
   req.path = "/v3_0/offshore/info";
   req.method = "POST";
   const proxiedSBackObj = {

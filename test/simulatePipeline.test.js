@@ -14,7 +14,7 @@ beforeAll(() => {
     return res;
   };
   res.locals = {};
-  req.baseUrl = "/jp";
+  req.baseUrl = "/gp";
   req.path = "/v3_0/offshore/info";
   req.method = "get";
 });
@@ -35,7 +35,7 @@ test("no mock data,no apiStatus", () => {
   db
     .get("apis")
     .push({
-      pro: "jp",
+      pro: "gp",
       url: "/v3_0/offshore/info",
       desc: "",
       method: "get",

@@ -29,6 +29,7 @@ function handleProxyApiRes(req, res) {
     undefined,
     delta !== undefined
   );
+  console.log("api");
   jsondiffpatch.console.log(delta);
 }
 
