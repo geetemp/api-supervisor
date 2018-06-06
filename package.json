@@ -1,10 +1,11 @@
 {
   "name": "api-supervisor",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "api data management",
   "main": "index.js",
   "author": "common",
   "license": "MIT",
+  "bin": {},
   "scripts": {
     "start": "nodemon ./dev.js",
     "test": "jest"
