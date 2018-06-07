@@ -105,7 +105,7 @@ proxyPaths.length &&
   );
 
 //走模拟接口路由
-simulatePaths &&
+simulatePaths.length &&
   app.use(simulatePaths, (req, res) => {
     res.locals.supervisorStatus = parseInt(req.param("supervisorStatus", 0));
     simulatePipeline.execute(req, res);
