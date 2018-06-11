@@ -82,7 +82,7 @@
       "result": {
         "code": 0,
         "data": {
-          "price_bases": 7500
+          "price_base": "7500"
         },
         "msg": "OK"
       },

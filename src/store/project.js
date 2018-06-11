@@ -29,5 +29,15 @@ export default {
         return item.identity === identity;
       })
       .value();
+  },
+
+  /**
+   * 添加一个项目
+   */
+  addOne: project => {
+    return db
+      .get("projects")
+      .push(project)
+      .write()[0];
   }
 };

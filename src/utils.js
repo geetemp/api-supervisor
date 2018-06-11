@@ -68,3 +68,12 @@ export function sortObjectKeys(obj) {
       return acc;
     }, {});
 }
+
+/**
+ * 接口返回格式模板
+ * @param {*} code 返回码
+ * @param {*} data 返回结果
+ */
+export function transferTemplate(data, code = 0) {
+  return { code, data };
+}
