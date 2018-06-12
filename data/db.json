@@ -15,6 +15,14 @@
         "target": "http://www.careerintlinc.com",
         "status": 1
       }
+    },
+    {
+      "name": "",
+      "identity": "huip",
+      "proxy": {
+        "target": "",
+        "status": "1"
+      }
     }
   ],
   "apis": [

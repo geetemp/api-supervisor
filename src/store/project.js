@@ -35,9 +35,26 @@ export default {
    * 添加一个项目
    */
   addOne: project => {
-    return db
+    const projectList = db
       .get("projects")
       .push(project)
-      .write()[0];
+      .write();
+    return projectList[projectList.length - 1];
+  },
+
+  /**
+   * 更新代理状态
+   */
+  update: project => {
+    const { identity, target = "", status = 1, name = "" } = project;
+    return db
+      .get("projects")
+      .find(item => {
+        return item.identity === identity;
+      })
+      .set("name", name)
+      .set("proxy.status", status)
+      .set("proxy.target", target)
+      .write();
   }
 };

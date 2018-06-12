@@ -14,21 +14,40 @@ router.get("/", function(req, res) {
 });
 
 /* add A project info */
-// router.POST("/", function(req, res) {
-//   const params = req.query;
-//   const { name, identity, target } = params;
-//   res.json(
-//     transferTemplate(
-//       projectStore.addOne({
-//         name,
-//         identity,
-//         proxy: {
-//           target,
-//           status: 1
-//         }
-//       })
-//     )
-//   );
-// });
+router.post("/", function(req, res) {
+  const { name, identity, target } = req.body;
+  const alreadyHas = projectStore.getOneByIdentity(identity);
+  //already has
+  if (alreadyHas) {
+    return res.json(transferTemplate("项目已存在", 1));
+  }
+  res.json(
+    transferTemplate(
+      projectStore.addOne({
+        name: name || "",
+        identity,
+        proxy: {
+          target,
+          status: 1
+        }
+      })
+    )
+  );
+});
+
+/* update project info  */
+router.put("/", function(req, res) {
+  const { identity, name, host, status } = req.body;
+  res.json(
+    transferTemplate(
+      projectStore.update({
+        identity,
+        name,
+        target: host,
+        status
+      })
+    )
+  );
+});
 
 export default router;

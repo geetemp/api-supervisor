@@ -74,6 +74,6 @@ export function sortObjectKeys(obj) {
  * @param {*} code 返回码
  * @param {*} data 返回结果
  */
-export function transferTemplate(data, code = 0) {
+export function transferTemplate(data = {}, code = 0) {
   return { code, data };
 }
