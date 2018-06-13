@@ -19,7 +19,7 @@ router.post("/", function(req, res) {
   const alreadyHas = projectStore.getOneByIdentity(identity);
   //already has
   if (alreadyHas) {
-    return res.json(transferTemplate("项目已存在", 1));
+    return res.json(transferTemplate("added project already exists.", 1));
   }
   res.json(
     transferTemplate(

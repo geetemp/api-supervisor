@@ -17,11 +17,11 @@
       }
     },
     {
-      "name": "",
+      "name": "汇聘",
       "identity": "huip",
       "proxy": {
-        "target": "",
-        "status": "1"
+        "target": "http://www.hitalen.com",
+        "status": 1
       }
     }
   ],
