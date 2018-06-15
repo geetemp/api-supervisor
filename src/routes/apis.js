@@ -1,9 +1,11 @@
 import express from "express";
 var router = express.Router();
 
-/* GET project info */
+/* GET apis info */
 router.get("/", function(req, res, next) {
-  res.end("api");
+  const { url, method } = req.query;
+
+  res.json();
 });
 
 export default router;
