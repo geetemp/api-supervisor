@@ -32,5 +32,12 @@ export default {
       .push(apiStatus)
       .write();
     return apiStatusList[apiStatusList.length - 1];
+  },
+
+  getListByApiId: apiId => {
+    return db
+      .get("apiStatus")
+      .filter({ apiId })
+      .value();
   }
 };

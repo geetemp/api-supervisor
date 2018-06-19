@@ -34,6 +34,16 @@ const apiStack = {
       .get("apiStack")
       .find({ id, apiStatusId })
       .value();
+  },
+
+  /**
+   * 根据apiStatusId获取stack List
+   */
+  getStackByApiStatusId: apiStatusId => {
+    return db
+      .get("apiStack")
+      .filter({ apiStatusId })
+      .value();
   }
 };
 
