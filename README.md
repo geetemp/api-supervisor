@@ -29,9 +29,9 @@ Json diff 测试
 
 覆盖其他请求 method(post,put,delete 等)
 
-##### underline
-
 命令行工具: 查询历史接口返回，指定接口比较；查询代理项目；查询接口列表
+
+##### underline
 
 动态字段
 
@@ -48,3 +48,9 @@ Json diff 测试
 ##### 资料
 
 http://www.albertgao.xyz/2017/05/24/how-to-test-expressjs-with-jest-and-supertest/
+
+##### 问题
+
+接口差异客户端显示问题:
+(1) window.open/window.document.write
+(2) window.postMessge/onMessage
