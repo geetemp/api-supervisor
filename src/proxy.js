@@ -78,6 +78,7 @@ proxyPaths.length &&
       pathRewrite: createPathRewrite(projects),
       router: createRouter(projects),
       changeOrigin: true,
+      selfHandleResponse: true,
       //IncomingMessage,IncomingMessage,ServerResponse
       onProxyRes: (proxyRes, req, res) => {
         proxyRes.setEncoding(appConfig.encoding);

@@ -29,8 +29,9 @@ function handleProxyApiRes(req, res) {
     undefined,
     delta !== undefined
   );
-  console.log("api");
-  jsondiffpatch.console.log(delta);
+  // jsondiffpatch.console.log(delta);
+  delta ? res.set("diff", JSON.stringify(delta)) : void 0;
+  res.status("200").send(proxiedServerBack);
 }
 
 function response(req, res) {

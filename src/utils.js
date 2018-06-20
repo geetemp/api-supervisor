@@ -77,3 +77,16 @@ export function sortObjectKeys(obj) {
 export function transferTemplate(data = {}, code = 0) {
   return { code, data };
 }
+
+/**
+ * 过滤掉对象值为undefined的键
+ * @param {*} obj 被过滤对象
+ */
+export function filterUndefined(obj) {
+  const keys = Object.keys(obj);
+  let filterObj = {};
+  for (const key of keys) {
+    if (obj[key]) filterObj[key] = obj[key];
+  }
+  return filterObj;
+}
