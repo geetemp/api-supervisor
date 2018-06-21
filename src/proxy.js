@@ -1,29 +1,21 @@
 import express from "express";
 import proxy from "http-proxy-middleware";
 import projectStore from "./store/project";
-import simulatePipeline from "./pipeline/simulatePipeline";
 import proxyPipeline from "./pipeline/proxyPipeline";
-import { toJSONSchema } from "./utils";
+import http from "http";
+import { toJSONSchema, IsJsonString, setReqPath } from "./utils";
 
 const app = express();
 const appConfig = require("../config/app.json");
 
-const projects = projectStore.getList();
-
-/**
- * 路由重写
- * @param {*} projects
- */
-function createPathRewrite(projects) {
-  projects = projects || [];
-  let pathRewrite = {},
-    proxy = {};
-  for (let pro of projects) {
-    proxy = pro.proxy;
-    proxy.status ? (pathRewrite[`^/${pro.identity}`] = "") : void 0;
+Object.defineProperty(http.IncomingMessage, "path", {
+  get: function() {
+    return this.path;
+  },
+  set: function(path) {
+    this.path = path;
   }
-  return pathRewrite;
-}
+});
 
 /**
  * 创建跳转路由
@@ -35,7 +27,7 @@ function createRouter(projects) {
     proxy = {};
   for (let pro of projects) {
     proxy = pro.proxy;
-    proxy.status ? (router[`/${pro.identity}`] = proxy.target) : void 0;
+    proxy.status ? (router[`^/${pro.identity}`] = proxy.target) : void 0;
   }
   return router;
 }
@@ -55,61 +47,93 @@ function getProxyPaths(projects) {
   return proxyPaths;
 }
 
-function getSimulatePaths(projects) {
-  projects = projects || [];
-  let simulatePaths = [],
-    proxy = {};
-  for (let pro of projects) {
-    proxy = pro.proxy;
-    !proxy.status ? simulatePaths.push(`^/${pro.identity}`) : void 0;
+/**
+ * 过滤代理路径
+ * @param {*} pathname
+ * @param {*} req
+ */
+const filter = function(pathname, req) {
+  const proxyPaths = getProxyPaths(projectStore.getList());
+  let isMath = false;
+  for (const proxyPath of proxyPaths) {
+    if (pathname.match(proxyPath)) return (isMath = true);
   }
-  return simulatePaths;
-}
+  return isMath;
+};
 
-const simulatePaths = getSimulatePaths(projects);
-const proxyPaths = getProxyPaths(projects);
+/**
+ * 请求地址重写
+ * @param {*} pathname
+ * @param {*} req
+ */
+const getPathRewrite = function(pathname, req) {
+  const proxyPaths = getProxyPaths(projectStore.getList());
+  for (const proxyPath of proxyPaths) {
+    //如果请求地址匹配代理路径，则重写请求地址
+    if (pathname.match(proxyPath)) {
+      return pathname.replace(new RegExp(proxyPath), "");
+    }
+  }
+};
+
+/**
+ * 路由重写
+ * @param {*} req
+ */
+const getRouter = function(req) {
+  const path = req.path,
+    routers = createRouter(projectStore.getList()),
+    pathMathExps = Object.keys(routers);
+  for (const pathMathExp of pathMathExps) {
+    if (path.match(pathMathExp)) {
+      return routers[pathMathExp];
+    }
+  }
+};
 
 //走代理路由
-proxyPaths.length &&
-  app.use(
-    proxyPaths,
-    proxy({
-      target: appConfig.proxyTarget,
-      pathRewrite: createPathRewrite(projects),
-      router: createRouter(projects),
-      changeOrigin: true,
-      selfHandleResponse: true,
-      //IncomingMessage,IncomingMessage,ServerResponse
-      onProxyRes: (proxyRes, req, res) => {
-        proxyRes.setEncoding(appConfig.encoding);
-        let proxiedServerBack = "";
-        proxyRes.on("data", data => {
-          proxiedServerBack += data;
-        });
-        proxyRes.on("end", () => {
-          const proxiedSBackObj = JSON.parse(proxiedServerBack);
-          res.locals.proxiedServerBack = proxiedSBackObj;
-          //supervisorStatus 接口状态，根据接口状态，返回不同的数据结构
-          res.locals.supervisorStatus = proxiedSBackObj[appConfig.resStatusKey];
-          proxyPipeline.execute(req, res);
-          // console.log(
-          //   "toJSONSchema",
-          //   JSON.stringify(toJSONSchema(proxiedServerBack))
-          // );
-          // console.log(proxyRes.req.agent);
-          // const { protocol } = proxyRes.req.agent;
-          // console.log(protocol, proxyRes.req.getHeader("host") + req.url);
-          // console.log(req.baseUrl, req.path);
-        });
-      }
-    })
-  );
-
-//走模拟接口路由
-simulatePaths.length &&
-  app.use(simulatePaths, (req, res) => {
-    res.locals.supervisorStatus = parseInt(req.param("supervisorStatus", 0));
-    simulatePipeline.execute(req, res);
-  });
+app.use(
+  proxy(filter, {
+    target: appConfig.proxyTarget,
+    pathRewrite: getPathRewrite,
+    router: getRouter,
+    changeOrigin: true,
+    selfHandleResponse: true,
+    //IncomingMessage,IncomingMessage,ServerResponse
+    onProxyRes: (proxyRes, req, res) => {
+      proxyRes.setEncoding(appConfig.encoding);
+      let proxiedServerBack = "";
+      proxyRes.on("data", data => {
+        proxiedServerBack += data;
+      });
+      proxyRes.on("end", () => {
+        try {
+          setReqPath(req.originalUrl.split("?")[0], req);
+          if (IsJsonString(proxiedServerBack)) {
+            const proxiedSBackObj = JSON.parse(proxiedServerBack);
+            res.locals.proxiedServerBack = proxiedSBackObj;
+            //supervisorStatus 接口状态，根据接口状态，返回不同的数据结构
+            res.locals.supervisorStatus =
+              proxiedSBackObj[appConfig.resStatusKey];
+            proxyPipeline.execute(req, res);
+            // console.log(
+            //   "toJSONSchema",
+            //   JSON.stringify(toJSONSchema(proxiedServerBack))
+            // );
+            // console.log(proxyRes.req.agent);
+            // const { protocol } = proxyRes.req.agent;
+            // console.log(protocol, proxyRes.req.getHeader("host") + req.url);
+            // console.log(req.baseUrl, req.path);
+          } else {
+            res.status("403").send(proxiedServerBack);
+          }
+        } catch (e) {
+          res.status(500).send(`${e.messge} \n ${e.stack}`);
+          console.log(e);
+        }
+      });
+    }
+  })
+);
 
 export default app;

@@ -1,30 +1,4 @@
 {
-  "projects": [
-    {
-      "name": "即派",
-      "identity": "gp",
-      "proxy": {
-        "target": "http://www.geetemp.com",
-        "status": 1
-      }
-    },
-    {
-      "name": "科锐官网",
-      "identity": "career",
-      "proxy": {
-        "target": "http://www.careerintlinc.com",
-        "status": 1
-      }
-    },
-    {
-      "name": "汇聘",
-      "identity": "huip",
-      "proxy": {
-        "target": "http://www.hitalen.com",
-        "status": 1
-      }
-    }
-  ],
   "apis": [
     {
       "pro": "gp",
@@ -32,334 +6,57 @@
       "desc": "",
       "method": "GET",
       "paramsDeclare": [],
-      "id": "BkZhK9Mlm"
-    },
-    {
-      "pro": "gp",
-      "url": "/v3_0/offshore/info",
-      "desc": "",
-      "method": "POST",
-      "paramsDeclare": [],
-      "id": "BJMbht5fl7"
-    },
-    {
-      "pro": "gp",
-      "url": "/v3_0/home/home",
-      "desc": "",
-      "method": "GET",
-      "paramsDeclare": [],
-      "id": "B1oSLe4xQ"
+      "id": "HyTkXZYbQ"
     }
   ],
   "apiStatus": [
     {
       "status": 0,
-      "apiId": "BkZhK9Mlm",
+      "apiId": "HyTkXZYbQ",
       "head": "eaf5bdddd8d5fa81a63246975fb3bba8",
-      "stable": "eaf5bdddd8d5fa81a63246975fb3bba8",
-      "id": "rke-2F9zlm"
-    },
-    {
-      "status": 1,
-      "apiId": "BkZhK9Mlm",
-      "head": "4fcdd9edac5c526550ce4f19362a9a41",
-      "stable": "4fcdd9edac5c526550ce4f19362a9a41",
-      "id": "rybW2F5fgm"
-    },
-    {
-      "status": 0,
-      "apiId": "BJMbht5fl7",
-      "head": "4fcdd9edac5c526550ce4f19362a9a41",
-      "stable": "af360ccc65dae5e76c0e38491c1c75ae",
-      "id": "r1XW2YcGx7"
-    },
-    {
-      "status": 0,
-      "apiId": "B1oSLe4xQ",
-      "head": "fdbeaf1fda8fb823b7338cc994958c70",
-      "stable": "fdbeaf1fda8fb823b7338cc994958c71",
-      "id": "BkgsHUeEl7"
+      "stable": "caf5bdddd8d5fa81a63246975fb3bba8",
+      "id": "SJxp1m-Y-7"
     }
   ],
   "apiStack": [
     {
-      "id": "eaf5bdddd8d5fa81a63246975fb3bba8",
-      "apiStatusId": "rke-2F9zlm",
+      "id": "caf5bdddd8d5fa81a63246975fb3bba8",
+      "apiStatusId": "SJxp1m-Y-7",
       "params": {},
       "resultDeclare": [],
       "result": {
         "code": 0,
+        "msg": "OK",
         "data": {
+          "age": 28,
           "price_base": "7500"
-        },
-        "msg": "OK"
+        }
       },
-      "timestamp": 1528109480887
+      "timestamp": 1529578213352
     },
     {
-      "id": "4fcdd9edac5c526550ce4f19362a9a41",
-      "apiStatusId": "rybW2F5fgm",
-      "params": {},
-      "resultDeclare": [],
-      "result": {
-        "code": 1,
-        "msg": "提交失败"
-      },
-      "timestamp": 1528109480903
-    },
-    {
-      "id": "cf6d9f325330ec9e369f1c138e08b3d0",
-      "apiStatusId": "rke-2F9zlm",
-      "params": {},
-      "resultDeclare": [],
-      "result": {
-        "code": 0,
-        "data": {
-          "price_bases": 7500
-        },
-        "msg": 3
-      },
-      "timestamp": 1528109480918
-    },
-    {
-      "id": "4fcdd9edac5c526550ce4f19362a9a41",
-      "apiStatusId": "r1XW2YcGx7",
-      "params": {},
-      "resultDeclare": [],
-      "result": {
-        "code": 0,
-        "msg": "添加成功"
-      },
-      "timestamp": 1528109480950
-    },
-    {
-      "id": "af360ccc65dae5e76c0e38491c1c75ae",
-      "apiStatusId": "r1XW2YcGx7",
-      "params": {},
-      "resultDeclare": [],
-      "result": {
-        "code": 0,
-        "msg": 360
-      },
-      "timestamp": 1528109480968
-    },
-    {
-      "id": "fdbeaf1fda8fb823b7338cc994958c71",
-      "apiStatusId": "BkgsHUeEl7",
+      "id": "eaf5bdddd8d5fa81a63246975fb3bba8",
+      "apiStatusId": "SJxp1m-Y-7",
       "params": {},
       "resultDeclare": [],
       "result": {
         "code": 0,
         "msg": "OK",
         "data": {
-          "special": [
-            {
-              "id": "2",
-              "name": "最美前台"
-            },
-            {
-              "id": "3",
-              "name": "金牌秘书"
-            }
-          ],
-          "picture": [],
-          "position": [
-            {
-              "position_ids": "-1",
-              "names": "不限",
-              "a": []
-            },
-            {
-              "position_id": "6",
-              "name": "行政",
-              "list": [
-                {
-                  "id": "57",
-                  "name": "秘书"
-                },
-                {
-                  "id": "65",
-                  "name": "前台"
-                },
-                {
-                  "id": "81",
-                  "name": "部门行政"
-                }
-              ]
-            },
-            {
-              "position_id": "23",
-              "name": "人力资源",
-              "list": [
-                {
-                  "id": "33",
-                  "name": "招聘专员"
-                },
-                {
-                  "id": "77",
-                  "name": "人事助理"
-                }
-              ]
-            },
-            {
-              "position_id": "24",
-              "name": "财务",
-              "list": [
-                {
-                  "id": "37",
-                  "name": "出纳"
-                },
-                {
-                  "id": "41",
-                  "name": "会计"
-                },
-                {
-                  "id": "49",
-                  "name": "总账"
-                },
-                {
-                  "id": "98",
-                  "name": "财务分析"
-                }
-              ]
-            },
-            {
-              "position_id": "93",
-              "name": "供应链",
-              "list": [
-                {
-                  "id": "94",
-                  "name": "供应链专员"
-                }
-              ]
-            }
-          ],
-          "city": [
-            "不限",
-            "北京",
-            "上海",
-            "深圳"
-          ],
-          "time": [
-            "不限",
-            "1年以下",
-            "1~3年",
-            "3~5年",
-            "5~10年",
-            "10年以上"
-          ]
+          "price_base": 7500
         }
       },
-      "timestamp": 1528198722552
-    },
+      "timestamp": 1529578596823
+    }
+  ],
+  "projects": [
     {
-      "id": "fdbeaf1fda8fb823b7338cc994958c70",
-      "apiStatusId": "BkgsHUeEl7",
-      "params": {},
-      "resultDeclare": [],
-      "result": {
-        "code": 0,
-        "msg": "OK",
-        "data": {
-          "special": [
-            {
-              "id": "2",
-              "name": "最美前台"
-            },
-            {
-              "id": "3",
-              "name": "金牌秘书"
-            }
-          ],
-          "picture": [],
-          "position": [
-            {
-              "position_id": "-1",
-              "name": "不限",
-              "list": []
-            },
-            {
-              "position_id": "6",
-              "name": "行政",
-              "list": [
-                {
-                  "id": "57",
-                  "name": "秘书"
-                },
-                {
-                  "id": "65",
-                  "name": "前台"
-                },
-                {
-                  "id": "81",
-                  "name": "部门行政"
-                }
-              ]
-            },
-            {
-              "position_id": "23",
-              "name": "人力资源",
-              "list": [
-                {
-                  "id": "33",
-                  "name": "招聘专员"
-                },
-                {
-                  "id": "77",
-                  "name": "人事助理"
-                }
-              ]
-            },
-            {
-              "position_id": "24",
-              "name": "财务",
-              "list": [
-                {
-                  "id": "37",
-                  "name": "出纳"
-                },
-                {
-                  "id": "41",
-                  "name": "会计"
-                },
-                {
-                  "id": "49",
-                  "name": "总账"
-                },
-                {
-                  "id": "98",
-                  "name": "财务分析"
-                }
-              ]
-            },
-            {
-              "position_id": "93",
-              "name": "供应链",
-              "list": [
-                {
-                  "id": "94",
-                  "name": "供应链专员"
-                }
-              ]
-            }
-          ],
-          "city": [
-            "不限",
-            "北京",
-            "上海",
-            "深圳"
-          ],
-          "worktime": [
-            "不限",
-            "1年以下",
-            "1~3年",
-            "3~5年",
-            "5~10年",
-            "10年以上"
-          ]
-        }
-      },
-      "timestamp": 1528199501864
+      "name": "即派",
+      "identity": "gp",
+      "proxy": {
+        "target": "http://www.geetemp.com",
+        "status": 0
+      }
     }
   ]
 }

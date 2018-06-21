@@ -23,10 +23,10 @@ function findApi(req, res, type) {
       return false;
     }
     //代理情况下，则存储该接口
-    let { baseUrl, path, method } = req;
+    let { baseUrl, rPath, method } = req;
     const api = {
       pro: baseUrl.substring(1),
-      url: path,
+      url: rPath,
       desc: "",
       method,
       paramsDeclare: []
@@ -34,8 +34,8 @@ function findApi(req, res, type) {
     return apiStore.add(api);
   };
 
-  let { baseUrl, path, method } = req;
-  const api = apiStore.getOne(baseUrl.substring(1), path, method);
+  let { baseUrl, rPath, method } = req;
+  const api = apiStore.getOne(baseUrl.substring(1), rPath, method);
   return (res.locals.api = api || notFind(req, res, type));
 }
 

@@ -46,15 +46,24 @@ export default {
    * 更新代理状态
    */
   update: project => {
-    const { identity, target = "", status = 1, name = "" } = project;
+    const { identity, target, status = 1, name } = project;
+    const underUpdatePro = db
+      .get("projects")
+      .find(item => {
+        return item.identity === identity;
+      })
+      .value();
     return db
       .get("projects")
       .find(item => {
         return item.identity === identity;
       })
-      .set("name", name)
-      .set("proxy.status", status)
-      .set("proxy.target", target)
+      .set("name", name ? name : underUpdatePro.name)
+      .set("proxy.target", target ? target : underUpdatePro.proxy.target)
+      .set(
+        "proxy.status",
+        status !== undefined ? status : underUpdatePro.proxy.status
+      )
       .write();
   }
 };

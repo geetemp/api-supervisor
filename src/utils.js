@@ -90,3 +90,31 @@ export function filterUndefined(obj) {
   }
   return filterObj;
 }
+
+/**
+ * 判断是否为Json
+ * @param {*} str
+ */
+export function IsJsonString(str) {
+  try {
+    JSON.parse(str);
+  } catch (e) {
+    return false;
+  }
+  return true;
+}
+
+/**
+ * 设置请求Path
+ * @param {*} path
+ * @param {*} req
+ */
+export function setReqPath(path, req) {
+  const pathWordArray = path.split("/");
+  req.baseUrl = "/" + (pathWordArray[1] || "");
+  let composePath = "";
+  for (let i = 2; i < pathWordArray.length; i++) {
+    composePath += `/${pathWordArray[i] || ""}`;
+  }
+  req.rPath = composePath;
+}

@@ -1,6 +1,6 @@
 import express from "express";
 import projectStore from "../store/project";
-import { transferTemplate } from "../utils";
+import { transferTemplate, filterUndefined } from "../utils";
 var router = express.Router();
 
 /* GET project info */
@@ -44,7 +44,7 @@ router.put("/", function(req, res) {
         identity,
         name,
         target: host,
-        status
+        status: parseInt(status)
       })
     )
   );
