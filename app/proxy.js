@@ -8,15 +8,6 @@ import { toJSONSchema, IsJsonString, setReqPath } from "./utils";
 const app = express();
 const appConfig = require("../config");
 
-Object.defineProperty(http.IncomingMessage, "path", {
-  get: function() {
-    return this.path;
-  },
-  set: function(path) {
-    this.path = path;
-  }
-});
-
 /**
  * 创建跳转路由
  * @param {*} projects

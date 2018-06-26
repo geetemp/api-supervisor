@@ -1,4 +1,6 @@
-import db from "./dbInit";
+const mongoose = require("mongoose");
+const Project = mongoose.model("Project");
+const { wrap: async } = require("co");
 
 export default {
   /*获取项目列表
@@ -34,13 +36,11 @@ export default {
   /**
    * 添加一个项目
    */
-  addOne: project => {
-    const projectList = db
-      .get("projects")
-      .push(project)
-      .write();
-    return projectList[projectList.length - 1];
-  },
+  addOne: async(function*(project) {
+    const projectModel = new Project();
+    Object.assign(projectModel, project);
+    yield projectModel.save();
+  }),
 
   /**
    * 更新代理状态

@@ -1,5 +1,5 @@
 const env = require("./env");
 
 module.exports = Object.assign(env, {
-  db: "mongodb://localhost/noobjs_dev"
+  db: "mongodb://127.0.0.1/api-supervisor"
 });
