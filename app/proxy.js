@@ -6,7 +6,7 @@ import http from "http";
 import { toJSONSchema, IsJsonString, setReqPath } from "./utils";
 
 const app = express();
-const appConfig = require("../config/app.json");
+const appConfig = require("../config");
 
 Object.defineProperty(http.IncomingMessage, "path", {
   get: function() {

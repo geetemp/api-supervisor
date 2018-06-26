@@ -3,8 +3,8 @@ var bodyParser = require("body-parser");
 import apisRouter from "./routes/apis";
 import projectsRouter from "./routes/projects";
 import simulatePipeline from "./pipeline/simulatePipeline";
-const appConfig = require("../config/app.json");
 import { setReqPath } from "./utils";
+const appConfig = require("../config");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
