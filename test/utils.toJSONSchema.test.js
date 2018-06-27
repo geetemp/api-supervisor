@@ -1,4 +1,4 @@
-import { toJSONSchema } from "../src/utils";
+import { toJSONSchema } from "../app/utils";
 
 test("get json schema", () => {
   const jsonSchema = toJSONSchema(

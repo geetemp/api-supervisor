@@ -5,33 +5,23 @@ const { wrap: async } = require("co");
 export default {
   /*获取项目列表
   */
-  getList: () => {
-    return db.get("projects").value();
-  },
+  getList: async(function*() {
+    return yield Project.find({});
+  }),
 
   /**
    * 根据host名查找项目
    */
-  getOneByhost: host => {
-    return db
-      .get("projects")
-      .find(item => {
-        return item.proxy.target === host;
-      })
-      .value();
-  },
+  getOneByhost: async(function*(host) {
+    return yield Project.findOne({ "proxy.target": host }).lean();
+  }),
 
   /**
    * 根据identity查找项目
    */
-  getOneByIdentity: identity => {
-    return db
-      .get("projects")
-      .find(item => {
-        return item.identity === identity;
-      })
-      .value();
-  },
+  getOneByIdentity: async(function*(identity) {
+    return yield Project.findOne({ identity }).lean();
+  }),
 
   /**
    * 添加一个项目
@@ -39,31 +29,25 @@ export default {
   addOne: async(function*(project) {
     const projectModel = new Project();
     Object.assign(projectModel, project);
-    yield projectModel.save();
+    return yield projectModel.save();
   }),
 
   /**
    * 更新代理状态
    */
-  update: project => {
+  update: async(function*(project) {
     const { identity, target, status = 1, name } = project;
-    const underUpdatePro = db
-      .get("projects")
-      .find(item => {
-        return item.identity === identity;
-      })
-      .value();
-    return db
-      .get("projects")
-      .find(item => {
-        return item.identity === identity;
-      })
-      .set("name", name ? name : underUpdatePro.name)
-      .set("proxy.target", target ? target : underUpdatePro.proxy.target)
-      .set(
-        "proxy.status",
-        status !== undefined ? status : underUpdatePro.proxy.status
-      )
-      .write();
-  }
+    const willUpdateDoc = {};
+    if (target) {
+      willUpdateDoc["proxy.target"] = target;
+    }
+    if (status !== undefined) {
+      willUpdateDoc["proxy.status"] = status;
+    }
+    if (name) {
+      willUpdateDoc["name"] = name;
+    }
+    yield Project.updateOne({ identity }, willUpdateDoc);
+    return yield Project.findOne({ identity }).lean();
+  })
 };

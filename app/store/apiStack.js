@@ -1,50 +1,44 @@
-import db from "./dbInit";
+const mongoose = require("mongoose");
+const ApiStack = mongoose.model("ApiStack");
+const { wrap: async } = require("co");
 
 const apiStack = {
   /**
    * 获取栈head信息
    */
-  getHeadStack: head => {
-    return apiStack.getStackById(head);
-  },
+  getHeadStack: async(function*(head) {
+    return yield ApiStack.findOne({ id: head });
+  }),
 
   /**
    * 新增一个stack
    */
-  addStack: stack => {
-    const apiStackList = db
-      .get("apiStack")
-      .push(stack)
-      .write();
-    return apiStackList[apiStackList.length - 1];
-  },
+  addStack: async(function*(stack) {
+    const apiStackModel = new ApiStack();
+    Object.assign(apiStackModel, stack);
+    return yield apiStackModel.save();
+  }),
 
-  getStackById: id => {
-    return db
-      .get("apiStack")
-      .find({ id })
-      .value();
-  },
+  /**
+   * 根据Id查询apiStack
+   */
+  getStackById: async(function*(id) {
+    return yield ApiStack.findOne({ id });
+  }),
 
   /**
    * 根据Id和apiStatusId获取stack
    */
-  getStackByIdAndApiStatusId: (id, apiStatusId) => {
-    return db
-      .get("apiStack")
-      .find({ id, apiStatusId })
-      .value();
-  },
+  getStackByIdAndApiStatusId: async(function*(id, apiStatusId) {
+    return yield ApiStack.findOne({ id, apiStatusId });
+  }),
 
   /**
    * 根据apiStatusId获取stack List
    */
-  getStackByApiStatusId: apiStatusId => {
-    return db
-      .get("apiStack")
-      .filter({ apiStatusId })
-      .value();
-  }
+  getStackByApiStatusId: async(function*(apiStatusId) {
+    return yield ApiStack.find({ apiStatusId });
+  })
 };
 
 export default apiStack;

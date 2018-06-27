@@ -12,7 +12,7 @@ const Schema = mongoose.Schema;
  */
 const ProjectSchema = new Schema({
   name: { type: String, default: "", trim: true },
-  identity: { type: String, default: "", trim: true },
+  identity: { type: String, default: "", trim: true, index: true },
   proxy: {
     target: { type: String, default: "", trim: true },
     status: { type: Number, default: 1, trim: true }
