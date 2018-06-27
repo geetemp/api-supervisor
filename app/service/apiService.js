@@ -1,7 +1,8 @@
 import apiStackStore from "../store/apiStack";
 import apiStatusStore from "../store/apiStatus";
 import { getTimestamp, sortObjectKeys } from "../utils";
-var md5 = require("md5");
+const md5 = require("md5");
+const { wrap: async } = require("co");
 
 /**
  * 保存新的被代理服务器返回结果
@@ -12,7 +13,7 @@ var md5 = require("md5");
  * @param {*} init    是否是初始化添加
  * @param {*} isDiff  是否存在差异
  */
-function storeProxiedServerBack(
+function* storeProxiedServerBack(
   proxiedSBackSchema,
   proxiedServerBack,
   apiStatus,
@@ -23,7 +24,11 @@ function storeProxiedServerBack(
   //Json Schema按字母排序,并计算md5
   const id = md5(JSON.stringify(sortObjectKeys(proxiedSBackSchema)));
   //如果没有则新增一个apiStack作为head
-  if (isDiff && !apiStackStore.getStackByIdAndApiStatusId(id, apiStatus.id)) {
+  const apiStack = yield apiStackStore.getStackByIdAndApiStatusId(
+    id,
+    apiStatus.id
+  );
+  if (isDiff && !apiStack) {
     //生成待存储stack
     const willStoreStack = {
       id,
@@ -42,5 +47,7 @@ function storeProxiedServerBack(
     apiStatusStore.updateHead(apiStatus.id, apiStatus.status, id);
   }
 }
+
+storeProxiedServerBack = async(storeProxiedServerBack);
 
 export { storeProxiedServerBack };

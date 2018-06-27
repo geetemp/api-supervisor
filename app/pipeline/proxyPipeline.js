@@ -4,8 +4,9 @@ import apiStatusStore from "../store/apiStatus";
 import { findApi, findApiStatus, findApiStack } from "./baseHandles";
 import { storeProxiedServerBack } from "../service/apiService";
 import { toJSONSchema, getTimestamp } from "../utils";
-var md5 = require("md5");
-var jsondiffpatch = require("jsondiffpatch");
+const md5 = require("md5");
+const jsondiffpatch = require("jsondiffpatch");
+const { wrap: async } = require("co");
 
 /**
  * 处理api代理返回结果
@@ -14,14 +15,14 @@ var jsondiffpatch = require("jsondiffpatch");
  * @param {*} req
  * @param {*} res
  */
-function handleProxyApiRes(req, res) {
+function* handleProxyApiRes(req, res) {
   const { proxiedServerBack, apiRes } = res.locals;
   const proxiedSBackSchema = toJSONSchema(JSON.stringify(proxiedServerBack));
   const apiResSchema = toJSONSchema(JSON.stringify(apiRes.result));
   const delta = jsondiffpatch.diff(apiResSchema, proxiedSBackSchema);
   const { apiStatus } = res.locals;
   //存储被代理接口数据
-  storeProxiedServerBack(
+  yield storeProxiedServerBack(
     proxiedSBackSchema,
     proxiedServerBack,
     apiStatus,
@@ -41,6 +42,6 @@ function response(req, res) {
 
 const proxyPipeline = new Pipeline("proxy");
 proxyPipeline.addHandleBackWrap([findApi, findApiStatus, findApiStack]);
-proxyPipeline.addHandleBackWrap(handleProxyApiRes);
+proxyPipeline.addHandleBackWrap(async(handleProxyApiRes));
 
 export default proxyPipeline;

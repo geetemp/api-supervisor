@@ -7,6 +7,7 @@ import { toJSONSchema, IsJsonString, setReqPath } from "./utils";
 
 const app = express();
 const appConfig = require("../config");
+const { wrap: async } = require("co");
 
 /**
  * 创建跳转路由
@@ -106,7 +107,7 @@ app.use(
             //supervisorStatus 接口状态，根据接口状态，返回不同的数据结构
             res.locals.supervisorStatus =
               proxiedSBackObj[appConfig.resStatusKey];
-            proxyPipeline.execute(req, res);
+            async(proxyPipeline.execute)(req, res);
             // console.log(
             //   "toJSONSchema",
             //   JSON.stringify(toJSONSchema(proxiedServerBack))

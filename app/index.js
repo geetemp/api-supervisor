@@ -4,10 +4,11 @@
 import { setReqPath } from "./utils";
 const fs = require("fs");
 const join = require("path").join;
-var bodyParser = require("body-parser");
+const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const appConfig = require("../config");
 const models = join(__dirname, "models");
+const { wrap: async } = require("co");
 
 // Bootstrap models
 fs.readdirSync(models)
@@ -29,7 +30,7 @@ app.use("/apis", require("./routes/apis").default);
 app.use((req, res) => {
   res.locals.supervisorStatus = parseInt(req.param("supervisorStatus", 0));
   setReqPath(req.originalUrl.split("?")[0], req);
-  simulatePipeline.execute(req, res);
+  async(simulatePipeline.execute)(req, res);
 });
 
 function listen() {

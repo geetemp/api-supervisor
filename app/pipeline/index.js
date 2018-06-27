@@ -21,10 +21,10 @@ export default class Pipeline {
     return !isArray(res);
   }
 
-  execute(req, res) {
+  *execute(req, res) {
     const { handleBackActionList, type } = this;
     for (const executeAction of handleBackActionList) {
-      const isContinue = executeAction && executeAction(req, res, type);
+      const isContinue = yield executeAction(req, res, type);
       if (!isContinue) break;
     }
   }
