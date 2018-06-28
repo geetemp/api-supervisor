@@ -3,7 +3,7 @@ import apiStackStore from "../store/apiStack";
 import apiStatusStore from "../store/apiStatus";
 import { findApi, findApiStatus, findApiStack } from "./baseHandles";
 import { storeProxiedServerBack } from "../service/apiService";
-import { toJSONSchema, getTimestamp } from "../utils";
+import { toJSONSchema } from "../utils";
 const md5 = require("md5");
 const jsondiffpatch = require("jsondiffpatch");
 const { wrap: async } = require("co");
@@ -22,7 +22,7 @@ function* handleProxyApiRes(req, res) {
   const delta = jsondiffpatch.diff(apiResSchema, proxiedSBackSchema);
   const { apiStatus } = res.locals;
   //存储被代理接口数据
-  yield storeProxiedServerBack(
+  storeProxiedServerBack(
     proxiedSBackSchema,
     proxiedServerBack,
     apiStatus,
@@ -30,7 +30,7 @@ function* handleProxyApiRes(req, res) {
     undefined,
     delta !== undefined
   );
-  // jsondiffpatch.console.log(delta);
+  jsondiffpatch.console.log(delta);
   delta ? res.set("diff", JSON.stringify(delta)) : void 0;
   res.status("200").send(proxiedServerBack);
 }

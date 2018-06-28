@@ -6,7 +6,7 @@ export default {
   /*获取项目列表
   */
   getList: async(function*() {
-    return yield Project.find({});
+    return yield Project.find({}).lean();
   }),
 
   /**
@@ -42,7 +42,7 @@ export default {
       willUpdateDoc["proxy.target"] = target;
     }
     if (status !== undefined) {
-      willUpdateDoc["proxy.status"] = status;
+      willUpdateDoc["proxy.status"] = parseInt(status) || 0;
     }
     if (name) {
       willUpdateDoc["name"] = name;

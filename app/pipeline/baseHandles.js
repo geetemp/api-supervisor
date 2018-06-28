@@ -37,7 +37,12 @@ function* findApi(req, res, type) {
 
   let { baseUrl, rPath, method } = req;
   const api = yield apiStore.getOne(baseUrl.substring(1), rPath, method);
-  return yield (res.locals.api = api || notFind(req, res, type));
+  if (api) {
+    res.locals.api = api;
+  } else {
+    res.locals.api = yield notFind(req, res, type);
+  }
+  return true;
 }
 
 /**
@@ -66,7 +71,12 @@ function* findApiStatus(req, res, type) {
     api.id,
     supervisorStatus
   );
-  return yield (res.locals.apiStatus = apiStatus || notFind(req, res, type));
+  if (apiStatus) {
+    res.locals.apiStatus = apiStatus;
+  } else {
+    res.locals.apiStatus = yield notFind(req, res, type);
+  }
+  return true;
 }
 
 /**
@@ -93,7 +103,12 @@ function* findApiStack(req, res, type) {
   });
   const { apiStatus } = res.locals;
   const apiRes = yield apiStackStore.getHeadStack(apiStatus.stable);
-  return yield (res.locals.apiRes = apiRes || notFind(req, res, type));
+  if (apiRes) {
+    res.locals.apiRes = apiRes;
+  } else {
+    res.locals.apiRes = yield notFind(req, res, type);
+  }
+  return true;
 }
 
 /**
@@ -111,12 +126,13 @@ function logApiStack(req, res) {
  * @param {*} req
  * @param {*} res
  */
-function response(req, res) {
+function* response(req, res) {
   res.json(res.locals.apiRes.result);
 }
 
 findApi = async(findApi);
 findApiStatus = async(findApiStatus);
 findApiStack = async(findApiStack);
+response = async(response);
 
 export { findApi, findApiStatus, findApiStack, logApiStack, response };

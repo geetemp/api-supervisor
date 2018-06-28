@@ -1,9 +1,9 @@
 import express from "express";
 import proxy from "http-proxy-middleware";
-import projectStore from "./store/project";
 import proxyPipeline from "./pipeline/proxyPipeline";
 import http from "http";
 import { toJSONSchema, IsJsonString, setReqPath } from "./utils";
+import cache from "./cache";
 
 const app = express();
 const appConfig = require("../config");
@@ -45,7 +45,8 @@ function getProxyPaths(projects) {
  * @param {*} req
  */
 const filter = function(pathname, req) {
-  const proxyPaths = getProxyPaths(projectStore.getList());
+  console.log("project", cache.getState().projects);
+  const proxyPaths = getProxyPaths(cache.getState().projects);
   let isMath = false;
   for (const proxyPath of proxyPaths) {
     if (pathname.match(proxyPath)) return (isMath = true);
@@ -59,7 +60,7 @@ const filter = function(pathname, req) {
  * @param {*} req
  */
 const getPathRewrite = function(pathname, req) {
-  const proxyPaths = getProxyPaths(projectStore.getList());
+  const proxyPaths = getProxyPaths(cache.getState().projects);
   for (const proxyPath of proxyPaths) {
     //如果请求地址匹配代理路径，则重写请求地址
     if (pathname.match(proxyPath)) {
@@ -74,7 +75,7 @@ const getPathRewrite = function(pathname, req) {
  */
 const getRouter = function(req) {
   const path = req.path,
-    routers = createRouter(projectStore.getList()),
+    routers = createRouter(cache.getState().projects),
     pathMathExps = Object.keys(routers);
   for (const pathMathExp of pathMathExps) {
     if (path.match(pathMathExp)) {
@@ -107,7 +108,7 @@ app.use(
             //supervisorStatus 接口状态，根据接口状态，返回不同的数据结构
             res.locals.supervisorStatus =
               proxiedSBackObj[appConfig.resStatusKey];
-            async(proxyPipeline.execute)(req, res);
+            async(proxyPipeline.execute).apply(proxyPipeline, [req, res]);
             // console.log(
             //   "toJSONSchema",
             //   JSON.stringify(toJSONSchema(proxiedServerBack))

@@ -1,7 +1,5 @@
-// import apisRouter from "./routes/apis";
-// import projectsRouter from "./routes/projects";
-// import simulatePipeline from "./pipeline/simulatePipeline";
 import { setReqPath } from "./utils";
+import cache from "./cache";
 const fs = require("fs");
 const join = require("path").join;
 const bodyParser = require("body-parser");
@@ -30,13 +28,35 @@ app.use("/apis", require("./routes/apis").default);
 app.use((req, res) => {
   res.locals.supervisorStatus = parseInt(req.param("supervisorStatus", 0));
   setReqPath(req.originalUrl.split("?")[0], req);
-  async(simulatePipeline.execute)(req, res);
+  async(simulatePipeline.execute).apply(simulatePipeline, [req, res]);
 });
 
+/**
+ * 初始化缓存
+ */
+function initCache() {
+  require("./store/project")
+    .default.getList()
+    .then(projects => {
+      cache.dispatch({ type: "init", payload: projects });
+      cache.subscribe(state => {
+        console.log("state", state);
+      });
+    });
+}
+
+/**
+ * 启动服务器监听
+ */
 function listen() {
   app.listen(appConfig.port, () => {
     console.log(`Api Supervisor Server running on port ${appConfig.port}`);
   });
+}
+
+function afterConnected() {
+  initCache();
+  listen();
 }
 
 //mongodb connect
@@ -44,6 +64,6 @@ function connect() {
   mongoose.connect(appConfig.db);
   const db = mongoose.connection;
   db.on("error", console.log);
-  db.once("open", listen);
+  db.once("open", afterConnected);
 }
 connect();
