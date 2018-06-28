@@ -1,5 +1,5 @@
-import simulatePipeline from "../src/pipeline/simulatePipeline";
-import db from "../src/store/dbInit";
+import simulatePipeline from "../app/pipeline/simulatePipeline";
+import db from "../app/store/dbInit";
 
 let res = {};
 let req = {};
@@ -32,8 +32,7 @@ test("no mock data,no apiStatus", () => {
   res.send = function(str) {
     expect(str).toBe("this api status isn't proxied");
   };
-  db
-    .get("apis")
+  db.get("apis")
     .push({
       pro: "gp",
       url: "/v3_0/offshore/info",
@@ -51,8 +50,7 @@ test("no mock data,no apiStack", () => {
   res.send = function(str) {
     expect(str).toBe("this api stack isn't proxied");
   };
-  db
-    .get("apiStatus")
+  db.get("apiStatus")
     .push({
       status: 0,
       apiId: "S1BsWtbgQ",

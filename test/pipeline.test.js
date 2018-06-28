@@ -1,4 +1,4 @@
-import Pipeline from "../src/pipeline";
+import Pipeline from "../app/pipeline";
 
 test("Pipeline not continue", () => {
   const pipeline = new Pipeline();

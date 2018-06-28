@@ -1,5 +1,5 @@
-import proxyPipeline from "../src/pipeline/proxyPipeline";
-import db from "../src/store/dbInit";
+import proxyPipeline from "../app/pipeline/proxyPipeline";
+import db from "../app/store/dbInit";
 
 let res = {};
 let req = {};

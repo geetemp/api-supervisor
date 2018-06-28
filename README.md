@@ -31,7 +31,17 @@ Json diff 测试
 
 命令行工具: 查询历史接口返回，指定接口比较；查询代理项目；查询接口列表
 
+modify database util from lowdb to mongodb
+
+##### doing
+
+debug lowdb to mongodb
+
 ##### underline
+
+程序错误处理
+
+url 正则匹配
 
 动态字段
 
