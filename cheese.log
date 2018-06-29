@@ -1,0 +1,90 @@
+[2018-06-29T14:54:48.455] [ERROR] cheese - TypeError: _apiStatus2.default.getListByApiId(...).map is not a function
+    at d:/learn-2018/api-supervisor/app/routes/apis.js:31:57
+    at Generator.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+[2018-06-29T14:55:44.671] [ERROR] cheese - TypeError: _apiStatus2.default.getListByApiId(...).map is not a function
+    at d:/learn-2018/api-supervisor/app/routes/apis.js:31:57
+    at Generator.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+[2018-06-29T14:56:57.753] [ERROR] cheese - TypeError: _apiStatus2.default.getListByApiId(...).map is not a function
+    at d:/learn-2018/api-supervisor/app/routes/apis.js:31:57
+    at Generator.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+[2018-06-29T14:57:44.030] [ERROR] cheese - TypeError: _apiStatus2.default.getListByApiId(...).map is not a function
+    at d:/learn-2018/api-supervisor/app/routes/apis.js:31:57
+    at Generator.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+[2018-06-29T14:58:41.104] [ERROR] cheese - TypeError: _apiStatus2.default.getListByApiId(...).map is not a function
+    at d:/learn-2018/api-supervisor/app/routes/apis.js:31:57
+    at Generator.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+[2018-06-29T14:59:02.983] [ERROR] cheese - TypeError: _apiStatus2.default.getListByApiId(...).map is not a function
+    at d:/learn-2018/api-supervisor/app/routes/apis.js:31:57
+    at Generator.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+[2018-06-29T14:59:21.435] [ERROR] cheese - TypeError: _apiStatus2.default.getListByApiId(...).map is not a function
+    at d:/learn-2018/api-supervisor/app/routes/apis.js:31:57
+    at Generator.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+[2018-06-29T14:59:27.938] [ERROR] cheese - TypeError: _apiStatus2.default.getListByApiId(...).map is not a function
+    at d:/learn-2018/api-supervisor/app/routes/apis.js:31:57
+    at Generator.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+[2018-06-29T14:59:41.067] [ERROR] cheese - TypeError: _apiStatus2.default.getListByApiId(...).map is not a function
+    at d:/learn-2018/api-supervisor/app/routes/apis.js:31:57
+    at Generator.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+[2018-06-29T15:19:14.115] [ERROR] cheese - TypeError: _apiStack2.default.getStackByApiStatusId(...).map is not a function
+    at d:/learn-2018/api-supervisor/app/routes/apis.js:61:20
+    at Generator.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+[2018-06-29T15:30:24.357] [ERROR] cheese - TypeError: Cannot read property 'result' of undefined
+    at handleProxyApiRes (d:/learn-2018/api-supervisor/app/pipeline/proxyPipeline.js:21:59)
+    at handleProxyApiRes.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at d:\learn-2018\api-supervisor\node_modules\co\index.js:54:5
+    at new Promise (<anonymous>)
+    at co (d:\learn-2018\api-supervisor\node_modules\co\index.js:50:10)
+    at createPromise (d:\learn-2018\api-supervisor\node_modules\co\index.js:30:15)
+    at Pipeline.execute (d:/learn-2018/api-supervisor/app/pipeline/index.js:27:32)
+    at execute.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+[2018-06-29T15:57:33.329] [ERROR] cheese - TypeError: You may only yield a function, promise, generator, array, or object, but the following object was passed: "undefined"
+    at next (d:\learn-2018\api-supervisor\node_modules\co\index.js:101:25)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:69:7)
+    at d:\learn-2018\api-supervisor\node_modules\co\index.js:54:5
+    at new Promise (<anonymous>)
+    at co (d:\learn-2018\api-supervisor\node_modules\co\index.js:50:10)
+    at createPromise (d:\learn-2018\api-supervisor\node_modules\co\index.js:30:15)
+    at Layer.handle [as handle_request] (d:\learn-2018\api-supervisor\node_modules\express\lib\router\layer.js:95:5)
+    at next (d:\learn-2018\api-supervisor\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (d:\learn-2018\api-supervisor\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (d:\learn-2018\api-supervisor\node_modules\express\lib\router\layer.js:95:5)
+    at d:\learn-2018\api-supervisor\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (d:\learn-2018\api-supervisor\node_modules\express\lib\router\index.js:335:12)
+    at next (d:\learn-2018\api-supervisor\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (d:\learn-2018\api-supervisor\node_modules\express\lib\router\index.js:174:3)
+    at router (d:\learn-2018\api-supervisor\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (d:\learn-2018\api-supervisor\node_modules\express\lib\router\layer.js:95:5)

@@ -2,6 +2,7 @@ import express from "express";
 import proxy from "http-proxy-middleware";
 import proxyPipeline from "./pipeline/proxyPipeline";
 import http from "http";
+import logger from "./logger";
 import { toJSONSchema, IsJsonString, setReqPath } from "./utils";
 import cache from "./cache";
 
@@ -92,7 +93,6 @@ app.use(
     router: getRouter,
     changeOrigin: true,
     selfHandleResponse: true,
-    //IncomingMessage,IncomingMessage,ServerResponse
     onProxyRes: (proxyRes, req, res) => {
       proxyRes.setEncoding(appConfig.encoding);
       let proxiedServerBack = "";
@@ -108,21 +108,20 @@ app.use(
             //supervisorStatus 接口状态，根据接口状态，返回不同的数据结构
             res.locals.supervisorStatus =
               proxiedSBackObj[appConfig.resStatusKey];
-            async(proxyPipeline.execute).apply(proxyPipeline, [req, res]);
-            // console.log(
-            //   "toJSONSchema",
-            //   JSON.stringify(toJSONSchema(proxiedServerBack))
-            // );
-            // console.log(proxyRes.req.agent);
-            // const { protocol } = proxyRes.req.agent;
-            // console.log(protocol, proxyRes.req.getHeader("host") + req.url);
-            // console.log(req.baseUrl, req.path);
+            async(proxyPipeline.execute)
+              .apply(proxyPipeline, [req, res])
+              .catch(err => {
+                console.error(err);
+                logger.error(err);
+                res.status(500).send("Sorry,server something broke!");
+              });
           } else {
             res.status("403").send(proxiedServerBack);
           }
-        } catch (e) {
-          res.status(500).send(`${e.messge} \n ${e.stack}`);
-          console.log(e);
+        } catch (err) {
+          console.error(err);
+          logger.error(err);
+          res.status(500).send("Sorry,server something broke!");
         }
       });
     }
