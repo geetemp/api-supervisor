@@ -9,14 +9,18 @@ const { wrap: async } = require("co");
 router.get(
   "/",
   async(function*(req, res) {
-    const params = req.query;
-    if (params.identity) {
-      res.json(
-        transferTemplate(yield projectStore.getOneByIdentity(params.identity))
-      );
-      return;
+    try {
+      const params = req.query;
+      if (params.identity) {
+        res.json(
+          transferTemplate(yield projectStore.getOneByIdentity(params.identity))
+        );
+        return;
+      }
+      res.json(transferTemplate(yield projectStore.getList()));
+    } catch (err) {
+      next(err);
     }
-    res.json(transferTemplate(yield projectStore.getList()));
   })
 );
 
@@ -24,22 +28,26 @@ router.get(
 router.post(
   "/",
   async(function*(req, res) {
-    const { name, identity, target } = req.body;
-    const alreadyHas = yield projectStore.getOneByIdentity(identity);
-    //already has
-    if (alreadyHas) {
-      return res.json(transferTemplate("added project already exists.", 1));
-    }
-    const newProject = yield projectStore.addOne({
-      name: name || "",
-      identity,
-      proxy: {
-        target,
-        status: 1
+    try {
+      const { name, identity, target } = req.body;
+      const alreadyHas = yield projectStore.getOneByIdentity(identity);
+      //already has
+      if (alreadyHas) {
+        return res.json(transferTemplate("added project already exists.", 1));
       }
-    });
-    cache.dispatch({ type: "add", payload: newProject.toObject() });
-    res.json(transferTemplate(newProject));
+      const newProject = yield projectStore.addOne({
+        name: name || "",
+        identity,
+        proxy: {
+          target,
+          status: 1
+        }
+      });
+      cache.dispatch({ type: "add", payload: newProject.toObject() });
+      res.json(transferTemplate(newProject));
+    } catch (err) {
+      next(err);
+    }
   })
 );
 
@@ -47,15 +55,19 @@ router.post(
 router.put(
   "/",
   async(function*(req, res) {
-    const { identity, name, host, status } = req.body;
-    const updatedProject = yield projectStore.update({
-      identity,
-      name,
-      target: host,
-      status
-    });
-    cache.dispatch({ type: "update", payload: updatedProject });
-    res.json(transferTemplate(updatedProject));
+    try {
+      const { identity, name, host, status } = req.body;
+      const updatedProject = yield projectStore.update({
+        identity,
+        name,
+        target: host,
+        status
+      });
+      cache.dispatch({ type: "update", payload: updatedProject });
+      res.json(transferTemplate(updatedProject));
+    } catch (err) {
+      next(err);
+    }
   })
 );
 

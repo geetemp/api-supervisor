@@ -1,5 +1,7 @@
 import { setReqPath } from "./utils";
 import cache from "./cache";
+import logger from "./logger";
+import { transferTemplate } from "./utils";
 const fs = require("fs");
 const join = require("path").join;
 const bodyParser = require("body-parser");
@@ -25,10 +27,22 @@ app.use("/projects", require("./routes/projects").default);
 app.use("/apis", require("./routes/apis").default);
 
 //走模拟接口路由
-app.use((req, res) => {
+app.use((req, res, next) => {
   res.locals.supervisorStatus = parseInt(req.param("supervisorStatus", 0));
   setReqPath(req.originalUrl.split("?")[0], req);
-  async(simulatePipeline.execute).apply(simulatePipeline, [req, res]);
+  async(simulatePipeline.execute)
+    .apply(simulatePipeline, [req, res])
+    .catch(err => {
+      console.error(err);
+      logger.error(err);
+      res.status(500).send("Sorry,server something broke!");
+    });
+});
+
+app.use((err, req, res, next) => {
+  console.error(err);
+  logger.error(err);
+  res.status(500).send("Sorry,server something broke!");
 });
 
 /**

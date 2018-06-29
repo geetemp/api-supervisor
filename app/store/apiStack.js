@@ -7,7 +7,7 @@ const apiStack = {
    * 获取栈head信息
    */
   getHeadStack: async(function*(head) {
-    return yield ApiStack.findOne({ id: head });
+    return yield ApiStack.findOne({ id: head }).lean();
   }),
 
   /**
@@ -23,21 +23,21 @@ const apiStack = {
    * 根据Id查询apiStack
    */
   getStackById: async(function*(id) {
-    return yield ApiStack.findOne({ id });
+    return yield ApiStack.findOne({ id }).lean();
   }),
 
   /**
    * 根据Id和apiStatusId获取stack
    */
   getStackByIdAndApiStatusId: async(function*(id, apiStatusId) {
-    return yield ApiStack.findOne({ id, apiStatusId });
+    return yield ApiStack.findOne({ id, apiStatusId }).lean();
   }),
 
   /**
    * 根据apiStatusId获取stack List
    */
   getStackByApiStatusId: async(function*(apiStatusId) {
-    return yield ApiStack.find({ apiStatusId });
+    return yield ApiStack.find({ apiStatusId }).lean();
   })
 };
 
