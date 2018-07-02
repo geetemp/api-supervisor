@@ -88,3 +88,147 @@
     at Function.handle (d:\learn-2018\api-supervisor\node_modules\express\lib\router\index.js:174:3)
     at router (d:\learn-2018\api-supervisor\node_modules\express\lib\router\index.js:47:12)
     at Layer.handle [as handle_request] (d:\learn-2018\api-supervisor\node_modules\express\lib\router\layer.js:95:5)
+[2018-07-02T15:14:20.613] [ERROR] cheese - Error: Can't set headers after they are sent.
+    at validateHeader (_http_outgoing.js:494:11)
+    at ServerResponse.setHeader (_http_outgoing.js:501:3)
+    at ServerResponse.header (D:\learn-2018\api-supervisor\node_modules\express\lib\response.js:767:10)
+    at ServerResponse.send (D:\learn-2018\api-supervisor\node_modules\express\lib\response.js:170:12)
+    at D:/learn-2018/api-supervisor/app/pipeline/baseHandles.js:56:25
+    at Generator.next (<anonymous>)
+    at onFulfilled (D:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at D:\learn-2018\api-supervisor\node_modules\co\index.js:54:5
+    at new Promise (<anonymous>)
+    at co (D:\learn-2018\api-supervisor\node_modules\co\index.js:50:10)
+    at createPromise (D:\learn-2018\api-supervisor\node_modules\co\index.js:30:15)
+    at findApiStatus (D:/learn-2018/api-supervisor/app/pipeline/baseHandles.js:77:34)
+    at findApiStatus.next (<anonymous>)
+    at onFulfilled (D:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at <anonymous>
+[2018-07-02T15:14:22.213] [ERROR] cheese - Error: Can't set headers after they are sent.
+    at validateHeader (_http_outgoing.js:494:11)
+    at ServerResponse.setHeader (_http_outgoing.js:501:3)
+    at ServerResponse.header (D:\learn-2018\api-supervisor\node_modules\express\lib\response.js:767:10)
+    at ServerResponse.send (D:\learn-2018\api-supervisor\node_modules\express\lib\response.js:170:12)
+    at D:/learn-2018/api-supervisor/app/pipeline/baseHandles.js:56:25
+    at Generator.next (<anonymous>)
+    at onFulfilled (D:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at D:\learn-2018\api-supervisor\node_modules\co\index.js:54:5
+    at new Promise (<anonymous>)
+    at co (D:\learn-2018\api-supervisor\node_modules\co\index.js:50:10)
+    at createPromise (D:\learn-2018\api-supervisor\node_modules\co\index.js:30:15)
+    at findApiStatus (D:/learn-2018/api-supervisor/app/pipeline/baseHandles.js:77:34)
+    at findApiStatus.next (<anonymous>)
+    at onFulfilled (D:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at <anonymous>
+[2018-07-02T15:14:22.615] [ERROR] cheese - Error: Can't set headers after they are sent.
+    at validateHeader (_http_outgoing.js:494:11)
+    at ServerResponse.setHeader (_http_outgoing.js:501:3)
+    at ServerResponse.header (D:\learn-2018\api-supervisor\node_modules\express\lib\response.js:767:10)
+    at ServerResponse.send (D:\learn-2018\api-supervisor\node_modules\express\lib\response.js:170:12)
+    at D:/learn-2018/api-supervisor/app/pipeline/baseHandles.js:56:25
+    at Generator.next (<anonymous>)
+    at onFulfilled (D:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at D:\learn-2018\api-supervisor\node_modules\co\index.js:54:5
+    at new Promise (<anonymous>)
+    at co (D:\learn-2018\api-supervisor\node_modules\co\index.js:50:10)
+    at createPromise (D:\learn-2018\api-supervisor\node_modules\co\index.js:30:15)
+    at findApiStatus (D:/learn-2018/api-supervisor/app/pipeline/baseHandles.js:77:34)
+    at findApiStatus.next (<anonymous>)
+    at onFulfilled (D:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at <anonymous>
+[2018-07-02T15:14:22.754] [ERROR] cheese - Error: Can't set headers after they are sent.
+    at validateHeader (_http_outgoing.js:494:11)
+    at ServerResponse.setHeader (_http_outgoing.js:501:3)
+    at ServerResponse.header (D:\learn-2018\api-supervisor\node_modules\express\lib\response.js:767:10)
+    at ServerResponse.send (D:\learn-2018\api-supervisor\node_modules\express\lib\response.js:170:12)
+    at D:/learn-2018/api-supervisor/app/pipeline/baseHandles.js:56:25
+    at Generator.next (<anonymous>)
+    at onFulfilled (D:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at D:\learn-2018\api-supervisor\node_modules\co\index.js:54:5
+    at new Promise (<anonymous>)
+    at co (D:\learn-2018\api-supervisor\node_modules\co\index.js:50:10)
+    at createPromise (D:\learn-2018\api-supervisor\node_modules\co\index.js:30:15)
+    at findApiStatus (D:/learn-2018/api-supervisor/app/pipeline/baseHandles.js:77:34)
+    at findApiStatus.next (<anonymous>)
+    at onFulfilled (D:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at <anonymous>
+[2018-07-02T15:14:31.938] [ERROR] cheese - Error: Can't set headers after they are sent.
+    at validateHeader (_http_outgoing.js:494:11)
+    at ServerResponse.setHeader (_http_outgoing.js:501:3)
+    at ServerResponse.header (D:\learn-2018\api-supervisor\node_modules\express\lib\response.js:767:10)
+    at ServerResponse.send (D:\learn-2018\api-supervisor\node_modules\express\lib\response.js:170:12)
+    at D:/learn-2018/api-supervisor/app/pipeline/baseHandles.js:56:25
+    at Generator.next (<anonymous>)
+    at onFulfilled (D:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at D:\learn-2018\api-supervisor\node_modules\co\index.js:54:5
+    at new Promise (<anonymous>)
+    at co (D:\learn-2018\api-supervisor\node_modules\co\index.js:50:10)
+    at createPromise (D:\learn-2018\api-supervisor\node_modules\co\index.js:30:15)
+    at findApiStatus (D:/learn-2018/api-supervisor/app/pipeline/baseHandles.js:77:34)
+    at findApiStatus.next (<anonymous>)
+    at onFulfilled (D:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at <anonymous>
+[2018-07-02T15:17:29.447] [ERROR] cheese - Error: Can't set headers after they are sent.
+    at validateHeader (_http_outgoing.js:494:11)
+    at ServerResponse.setHeader (_http_outgoing.js:501:3)
+    at ServerResponse.header (d:\learn-2018\api-supervisor\node_modules\express\lib\response.js:767:10)
+    at ServerResponse.send (d:\learn-2018\api-supervisor\node_modules\express\lib\response.js:170:12)
+    at d:/learn-2018/api-supervisor/app/pipeline/baseHandles.js:56:25
+    at Generator.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at d:\learn-2018\api-supervisor\node_modules\co\index.js:54:5
+    at new Promise (<anonymous>)
+    at co (d:\learn-2018\api-supervisor\node_modules\co\index.js:50:10)
+    at createPromise (d:\learn-2018\api-supervisor\node_modules\co\index.js:30:15)
+    at findApiStatus (d:/learn-2018/api-supervisor/app/pipeline/baseHandles.js:77:34)
+    at findApiStatus.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at <anonymous>
+[2018-07-02T15:19:19.207] [ERROR] cheese - Error: Can't set headers after they are sent.
+    at validateHeader (_http_outgoing.js:494:11)
+    at ServerResponse.setHeader (_http_outgoing.js:501:3)
+    at ServerResponse.header (d:\learn-2018\api-supervisor\node_modules\express\lib\response.js:767:10)
+    at ServerResponse.send (d:\learn-2018\api-supervisor\node_modules\express\lib\response.js:170:12)
+    at d:/learn-2018/api-supervisor/app/pipeline/baseHandles.js:56:25
+    at Generator.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at d:\learn-2018\api-supervisor\node_modules\co\index.js:54:5
+    at new Promise (<anonymous>)
+    at co (d:\learn-2018\api-supervisor\node_modules\co\index.js:50:10)
+    at createPromise (d:\learn-2018\api-supervisor\node_modules\co\index.js:30:15)
+    at findApiStatus (d:/learn-2018/api-supervisor/app/pipeline/baseHandles.js:77:34)
+    at findApiStatus.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at <anonymous>
+[2018-07-02T15:19:40.389] [ERROR] cheese - Error: Can't set headers after they are sent.
+    at validateHeader (_http_outgoing.js:494:11)
+    at ServerResponse.setHeader (_http_outgoing.js:501:3)
+    at ServerResponse.header (d:\learn-2018\api-supervisor\node_modules\express\lib\response.js:767:10)
+    at ServerResponse.send (d:\learn-2018\api-supervisor\node_modules\express\lib\response.js:170:12)
+    at d:/learn-2018/api-supervisor/app/pipeline/baseHandles.js:56:25
+    at Generator.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at d:\learn-2018\api-supervisor\node_modules\co\index.js:54:5
+    at new Promise (<anonymous>)
+    at co (d:\learn-2018\api-supervisor\node_modules\co\index.js:50:10)
+    at createPromise (d:\learn-2018\api-supervisor\node_modules\co\index.js:30:15)
+    at findApiStatus (d:/learn-2018/api-supervisor/app/pipeline/baseHandles.js:77:34)
+    at findApiStatus.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at <anonymous>
+[2018-07-02T15:20:26.942] [ERROR] cheese - Error: Can't set headers after they are sent.
+    at validateHeader (_http_outgoing.js:494:11)
+    at ServerResponse.setHeader (_http_outgoing.js:501:3)
+    at ServerResponse.header (d:\learn-2018\api-supervisor\node_modules\express\lib\response.js:767:10)
+    at ServerResponse.send (d:\learn-2018\api-supervisor\node_modules\express\lib\response.js:170:12)
+    at d:/learn-2018/api-supervisor/app/pipeline/baseHandles.js:56:25
+    at Generator.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at d:\learn-2018\api-supervisor\node_modules\co\index.js:54:5
+    at new Promise (<anonymous>)
+    at co (d:\learn-2018\api-supervisor\node_modules\co\index.js:50:10)
+    at createPromise (d:\learn-2018\api-supervisor\node_modules\co\index.js:30:15)
+    at findApiStatus (d:/learn-2018/api-supervisor/app/pipeline/baseHandles.js:77:34)
+    at findApiStatus.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at <anonymous>

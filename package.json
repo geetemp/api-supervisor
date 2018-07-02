@@ -8,6 +8,8 @@
   "bin": {},
   "scripts": {
     "start": "nodemon ./dev.js",
+    "build": "rimraf dist && babel app -d dist/app && babel config -d dist/config && babel lib -d dist/lib",
+    "serve": "node dist/app/index.js",
     "test": "jest"
   },
   "dependencies": {
@@ -25,6 +27,7 @@
     "shortid": "^2.2.8"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-jest": "^23.0.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
