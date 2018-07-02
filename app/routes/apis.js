@@ -154,14 +154,39 @@ router.get(
   "/stack/diff",
   async(function*(req, res, next) {
     try {
-      const { newHash, oldHash } = req.query;
-      const newApiStack = yield apiStackStore.getStackById(newHash);
-      const oldApiStack = yield apiStackStore.getStackById(oldHash);
-      const delta = jsondiffpatch.diff(
-        toJSONSchema(JSON.stringify(newApiStack.result)),
-        toJSONSchema(JSON.stringify(oldApiStack.result))
-      );
-      res.send(delta);
+      const { one, two, workProject, code } = req.query;
+      //如果one不是一个url
+      if (one.indexOf("/") !== -1) {
+        const { newHash, oldHash } = { one, two };
+        const newApiStack = yield apiStackStore.getStackById(newHash);
+        const oldApiStack = yield apiStackStore.getStackById(oldHash);
+        const delta = jsondiffpatch.diff(
+          toJSONSchema(JSON.stringify(newApiStack.result)),
+          toJSONSchema(JSON.stringify(oldApiStack.result))
+        );
+        res.send(delta);
+      } else {
+        //如果是url
+        const { url, method } = { one, two };
+        const api = yield apiStore.getOne(workProject, url, method);
+        if (api) {
+          const apiStatus = yield apiStatusStore.getOneByApiStatus(
+            api.id,
+            code
+          );
+          const headApiStack = yield apiStackStore.getStackById(apiStatus.head);
+          const stableApiStack = yield apiStackStore.getStackById(
+            apiStatus.stable
+          );
+          const delta = jsondiffpatch.diff(
+            toJSONSchema(JSON.stringify(headApiStack.result)),
+            toJSONSchema(JSON.stringify(stableApiStack.result))
+          );
+          res.send(delta);
+        } else {
+          res.json(transferTemplate("Don't find the api!"));
+        }
+      }
     } catch (err) {
       next(err);
     }
