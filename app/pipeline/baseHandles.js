@@ -42,7 +42,7 @@ function* findApi(req, res, type) {
   } else {
     res.locals.api = yield notFind(req, res, type);
   }
-  return true;
+  return res.locals.api;
 }
 
 /**
@@ -76,7 +76,7 @@ function* findApiStatus(req, res, type) {
   } else {
     res.locals.apiStatus = yield notFind(req, res, type);
   }
-  return true;
+  return res.locals.apiStatus;
 }
 
 /**
@@ -108,7 +108,7 @@ function* findApiStack(req, res, type) {
   } else {
     res.locals.apiRes = yield notFind(req, res, type);
   }
-  return true;
+  return res.locals.apiRes;
 }
 
 /**
