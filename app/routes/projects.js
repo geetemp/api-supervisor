@@ -1,6 +1,6 @@
 import express from "express";
 import projectStore from "../store/project";
-import { transferTemplate, filterUndefined } from "../utils";
+import { transferTemplate } from "../utils";
 import cache from "../cache";
 const router = express.Router();
 const { wrap: async } = require("co");
