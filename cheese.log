@@ -257,3 +257,43 @@
     at Generator.next (<anonymous>)
     at onFulfilled (D:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
     at <anonymous>
+[2018-07-03T10:09:32.750] [ERROR] cheese - TypeError: Cannot read property 'result' of null
+    at d:/learn-2018/api-supervisor/app/routes/apis.js:164:51
+    at Generator.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at <anonymous>
+[2018-07-03T10:09:57.835] [ERROR] cheese - TypeError: Cannot read property 'result' of null
+    at d:/learn-2018/api-supervisor/app/routes/apis.js:164:51
+    at Generator.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at <anonymous>
+[2018-07-03T10:11:41.475] [ERROR] cheese - TypeError: Cannot read property 'result' of null
+    at d:/learn-2018/api-supervisor/app/routes/apis.js:165:51
+    at Generator.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at <anonymous>
+[2018-07-03T10:25:37.087] [ERROR] cheese - TypeError: Cannot read property 'result' of null
+    at d:/learn-2018/api-supervisor/app/routes/apis.js:165:51
+    at Generator.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at <anonymous>
+[2018-07-03T10:25:45.257] [ERROR] cheese - TypeError: Cannot read property 'result' of null
+    at d:/learn-2018/api-supervisor/app/routes/apis.js:165:51
+    at Generator.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at <anonymous>
+[2018-07-03T10:26:18.435] [ERROR] cheese - TypeError: Cannot read property 'result' of null
+    at d:/learn-2018/api-supervisor/app/routes/apis.js:165:51
+    at Generator.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at <anonymous>
+[2018-07-03T10:26:20.932] [ERROR] cheese - TypeError: Cannot read property 'result' of null
+    at d:/learn-2018/api-supervisor/app/routes/apis.js:165:51
+    at Generator.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at <anonymous>
+[2018-07-03T10:41:51.638] [ERROR] cheese - TypeError: Cannot read property 'result' of null
+    at d:/learn-2018/api-supervisor/app/routes/apis.js:165:51
+    at Generator.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at <anonymous>

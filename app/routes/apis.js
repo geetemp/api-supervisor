@@ -156,18 +156,20 @@ router.get(
     try {
       const { one, two, workProject, code } = req.query;
       //如果one不是一个url
-      if (one.indexOf("/") !== -1) {
-        const { newHash, oldHash } = { one, two };
+      if (one.indexOf("/") === -1) {
+        const newHash = one,
+          oldHash = two;
         const newApiStack = yield apiStackStore.getStackById(newHash);
         const oldApiStack = yield apiStackStore.getStackById(oldHash);
         const delta = jsondiffpatch.diff(
-          toJSONSchema(JSON.stringify(newApiStack.result)),
-          toJSONSchema(JSON.stringify(oldApiStack.result))
+          toJSONSchema(JSON.stringify(oldApiStack.result)),
+          toJSONSchema(JSON.stringify(newApiStack.result))
         );
-        res.send(delta);
+        res.json(transferTemplate(delta));
       } else {
         //如果是url
-        const { url, method } = { one, two };
+        const url = one,
+          method = two;
         const api = yield apiStore.getOne(workProject, url, method);
         if (api) {
           const apiStatus = yield apiStatusStore.getOneByApiStatus(
@@ -179,13 +181,39 @@ router.get(
             apiStatus.stable
           );
           const delta = jsondiffpatch.diff(
-            toJSONSchema(JSON.stringify(headApiStack.result)),
-            toJSONSchema(JSON.stringify(stableApiStack.result))
+            toJSONSchema(JSON.stringify(stableApiStack.result)),
+            toJSONSchema(JSON.stringify(headApiStack.result))
           );
-          res.send(delta);
+          res.json(transferTemplate(delta));
         } else {
-          res.json(transferTemplate("Don't find the api!"));
+          res.status("404").send("Don't find the api!");
         }
+      }
+    } catch (err) {
+      next(err);
+    }
+  })
+);
+
+router.put(
+  "/stack/merge",
+  async(function*(req, res, next) {
+    try {
+      const { workProject, url, method, code } = req.body;
+      const api = yield apiStore.getOne(workProject, url, method);
+      if (api) {
+        const apiStatus = yield apiStatusStore.getOneByApiStatus(api.id, code);
+        res.json(
+          transferTemplate(
+            yield apiStatusStore.updateStable(
+              apiStatus.id,
+              code,
+              apiStatus.head
+            )
+          )
+        );
+      } else {
+        res.status("404").send("Don't find the api!");
       }
     } catch (err) {
       next(err);
