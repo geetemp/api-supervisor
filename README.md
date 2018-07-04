@@ -61,8 +61,16 @@ url 正则匹配
 
 http://www.albertgao.xyz/2017/05/24/how-to-test-expressjs-with-jest-and-supertest/
 
+校验 JSON 完整性
+https://www.zhihu.com/question/26891248
+
+https://github.com/epoberezkin/ajv
+
+http://json-schema.org/
+
 ##### 问题
 
 接口差异客户端显示问题:
 (1) window.open/window.document.write
+
 (2) window.postMessge/onMessage
