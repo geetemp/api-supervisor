@@ -52,9 +52,7 @@ function initCache() {
     .default.getList()
     .then(projects => {
       cache.dispatch({ type: "init", payload: projects });
-      cache.subscribe(state => {
-        console.log("state", state);
-      });
+      cache.subscribe(state => {});
     });
 }
 

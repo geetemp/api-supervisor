@@ -1,9 +1,8 @@
 import express from "express";
 import proxy from "http-proxy-middleware";
 import proxyPipeline from "./pipeline/proxyPipeline";
-import http from "http";
 import logger from "./logger";
-import { toJSONSchema, IsJsonString, setReqPath } from "./utils";
+import { setReqPath } from "./utils";
 import cache from "./cache";
 
 const app = express();
@@ -46,7 +45,6 @@ function getProxyPaths(projects) {
  * @param {*} req
  */
 const filter = function(pathname, req) {
-  console.log("project", cache.getState().projects);
   const proxyPaths = getProxyPaths(cache.getState().projects);
   let isMath = false;
   for (const proxyPath of proxyPaths) {
@@ -94,16 +92,21 @@ app.use(
     changeOrigin: true,
     selfHandleResponse: true,
     onProxyRes: (proxyRes, req, res) => {
-      proxyRes.setEncoding(appConfig.encoding);
-      let proxiedServerBack = "";
+      const contentType = proxyRes.headers["content-type"];
+      console.log(contentType);
+      const setCookie = proxyRes.headers["set-cookie"];
+      if (setCookie) res.append("set-cookie", setCookie);
+      let proxiedServerBack = Buffer.from([]);
       proxyRes.on("data", data => {
-        proxiedServerBack += data;
+        proxiedServerBack = Buffer.concat([proxiedServerBack, data]);
       });
       proxyRes.on("end", () => {
         try {
           setReqPath(req.originalUrl.split("?")[0], req);
-          if (IsJsonString(proxiedServerBack)) {
-            const proxiedSBackObj = JSON.parse(proxiedServerBack);
+          if (contentType === "application/json") {
+            const proxiedSBackObj = JSON.parse(
+              proxiedServerBack.toString("utf8")
+            );
             res.locals.proxiedServerBack = proxiedSBackObj;
             //supervisorStatus 接口状态，根据接口状态，返回不同的数据结构
             res.locals.supervisorStatus =
@@ -116,7 +119,7 @@ app.use(
                 res.status(500).send("Sorry,server something broke!");
               });
           } else {
-            res.status("403").send(proxiedServerBack);
+            res.status("200").send(proxiedServerBack);
           }
         } catch (err) {
           console.error(err);
