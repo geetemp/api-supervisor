@@ -1,5 +1,4 @@
 import { filterUndefined } from "../utils";
-// var shortid = require("shortid");
 const mongoose = require("mongoose");
 const Api = mongoose.model("Api");
 const { wrap: async } = require("co");

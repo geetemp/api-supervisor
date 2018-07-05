@@ -433,3 +433,20 @@
     at execute.next (<anonymous>)
     at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
     at <anonymous>
+[2018-07-05T17:40:07.285] [ERROR] cheese - ReferenceError: content is not defined
+    at propertyFilter (d:/learn-2018/api-supervisor/app/pipeline/proxyPipeline.js:14:17)
+    at objectsDiffFilter (d:\learn-2018\api-supervisor\node_modules\jsondiffpatch\src\filters\nested.js:39:28)
+    at Pipe.process (d:\learn-2018\api-supervisor\node_modules\jsondiffpatch\dist\jsondiffpatch.cjs.js:209:9)
+    at Processor.process (d:\learn-2018\api-supervisor\node_modules\jsondiffpatch\src\processor.js:50:16)
+    at DiffPatcher.diff (d:\learn-2018\api-supervisor\node_modules\jsondiffpatch\src\diffpatcher.js:60:27)
+    at handleProxyApiRes (d:/learn-2018/api-supervisor/app/pipeline/proxyPipeline.js:31:31)
+    at handleProxyApiRes.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at d:\learn-2018\api-supervisor\node_modules\co\index.js:54:5
+    at new Promise (<anonymous>)
+    at co (d:\learn-2018\api-supervisor\node_modules\co\index.js:50:10)
+    at createPromise (d:\learn-2018\api-supervisor\node_modules\co\index.js:30:15)
+    at Pipeline.execute (d:/learn-2018/api-supervisor/app/pipeline/index.js:27:32)
+    at execute.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at <anonymous>

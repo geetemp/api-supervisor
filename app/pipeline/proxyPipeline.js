@@ -11,8 +11,7 @@ const jsondiffpatch = Jsondiffpatch.create({
       name: property name, present in either context.left or context.right objects
       context: the diff context (has context.left and context.right objects)
     */
-    console.log(name);
-    return context.left === "Null" || context.right === "Null";
+    return context.right[name] !== "Null" && context.left[name] !== "Null";
   }
 });
 
