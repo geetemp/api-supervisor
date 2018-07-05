@@ -93,7 +93,6 @@ app.use(
     selfHandleResponse: true,
     onProxyRes: (proxyRes, req, res) => {
       const contentType = proxyRes.headers["content-type"];
-      console.log(contentType);
       const setCookie = proxyRes.headers["set-cookie"];
       if (setCookie) res.append("set-cookie", setCookie);
       let proxiedServerBack = Buffer.from([]);

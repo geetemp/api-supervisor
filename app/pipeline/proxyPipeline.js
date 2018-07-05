@@ -1,12 +1,19 @@
 import Pipeline from "./index";
-import apiStackStore from "../store/apiStack";
-import apiStatusStore from "../store/apiStatus";
 import { findApi, findApiStatus, findApiStack } from "./baseHandles";
 import { storeProxiedServerBack } from "../service/apiService";
 import { toJSONSchema } from "../utils";
-const md5 = require("md5");
-const jsondiffpatch = require("jsondiffpatch");
 const { wrap: async } = require("co");
+const Jsondiffpatch = require("jsondiffpatch");
+const jsondiffpatch = Jsondiffpatch.create({
+  propertyFilter: function(name, context) {
+    /*
+     this optional function can be specified to ignore object properties (eg. volatile data)
+      name: property name, present in either context.left or context.right objects
+      context: the diff context (has context.left and context.right objects)
+    */
+    return context.right[name] !== "Null" && context.left[name] !== "Null";
+  }
+});
 
 /**
  * 处理api代理返回结果
@@ -30,7 +37,7 @@ function* handleProxyApiRes(req, res) {
     undefined,
     delta !== undefined
   );
-  jsondiffpatch.console.log(delta);
+  Jsondiffpatch.console.log(delta);
   delta ? res.set("diff", JSON.stringify(delta)) : void 0;
   res.status("200").send(proxiedServerBack);
 }

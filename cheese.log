@@ -319,3 +319,134 @@
     at endReadableNT (_stream_readable.js:1055:12)
     at _combinedTickCallback (internal/process/next_tick.js:138:11)
     at process._tickCallback (internal/process/next_tick.js:180:9)
+[2018-07-04T14:49:00.375] [ERROR] cheese - TypeError: Assignment to constant variable.
+    at d:/learn-2018/api-supervisor/app/routes/apis.js:60:9
+    at Generator.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+[2018-07-04T19:13:59.808] [ERROR] cheese - TypeError: Cannot read property 'log' of undefined
+    at handleProxyApiRes (d:/learn-2018/api-supervisor/app/pipeline/proxyPipeline.js:40:25)
+    at handleProxyApiRes.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at d:\learn-2018\api-supervisor\node_modules\co\index.js:54:5
+    at new Promise (<anonymous>)
+    at co (d:\learn-2018\api-supervisor\node_modules\co\index.js:50:10)
+    at createPromise (d:\learn-2018\api-supervisor\node_modules\co\index.js:30:15)
+    at Pipeline.execute (d:/learn-2018/api-supervisor/app/pipeline/index.js:27:32)
+    at execute.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at <anonymous>
+[2018-07-04T19:13:59.881] [ERROR] cheese - TypeError: Cannot read property 'log' of undefined
+    at handleProxyApiRes (d:/learn-2018/api-supervisor/app/pipeline/proxyPipeline.js:40:25)
+    at handleProxyApiRes.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at d:\learn-2018\api-supervisor\node_modules\co\index.js:54:5
+    at new Promise (<anonymous>)
+    at co (d:\learn-2018\api-supervisor\node_modules\co\index.js:50:10)
+    at createPromise (d:\learn-2018\api-supervisor\node_modules\co\index.js:30:15)
+    at Pipeline.execute (d:/learn-2018/api-supervisor/app/pipeline/index.js:27:32)
+    at execute.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at <anonymous>
+[2018-07-04T19:14:05.506] [ERROR] cheese - TypeError: Cannot read property 'log' of undefined
+    at handleProxyApiRes (d:/learn-2018/api-supervisor/app/pipeline/proxyPipeline.js:40:25)
+    at handleProxyApiRes.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at d:\learn-2018\api-supervisor\node_modules\co\index.js:54:5
+    at new Promise (<anonymous>)
+    at co (d:\learn-2018\api-supervisor\node_modules\co\index.js:50:10)
+    at createPromise (d:\learn-2018\api-supervisor\node_modules\co\index.js:30:15)
+    at Pipeline.execute (d:/learn-2018/api-supervisor/app/pipeline/index.js:27:32)
+    at execute.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at <anonymous>
+[2018-07-04T19:14:05.687] [ERROR] cheese - TypeError: Cannot read property 'log' of undefined
+    at handleProxyApiRes (d:/learn-2018/api-supervisor/app/pipeline/proxyPipeline.js:40:25)
+    at handleProxyApiRes.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at d:\learn-2018\api-supervisor\node_modules\co\index.js:54:5
+    at new Promise (<anonymous>)
+    at co (d:\learn-2018\api-supervisor\node_modules\co\index.js:50:10)
+    at createPromise (d:\learn-2018\api-supervisor\node_modules\co\index.js:30:15)
+    at Pipeline.execute (d:/learn-2018/api-supervisor/app/pipeline/index.js:27:32)
+    at execute.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at <anonymous>
+[2018-07-04T19:15:54.959] [ERROR] cheese - TypeError: Cannot read property 'log' of undefined
+    at handleProxyApiRes (d:/learn-2018/api-supervisor/app/pipeline/proxyPipeline.js:40:25)
+    at handleProxyApiRes.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at d:\learn-2018\api-supervisor\node_modules\co\index.js:54:5
+    at new Promise (<anonymous>)
+    at co (d:\learn-2018\api-supervisor\node_modules\co\index.js:50:10)
+    at createPromise (d:\learn-2018\api-supervisor\node_modules\co\index.js:30:15)
+    at Pipeline.execute (d:/learn-2018/api-supervisor/app/pipeline/index.js:27:32)
+    at execute.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at <anonymous>
+[2018-07-04T19:16:08.451] [ERROR] cheese - TypeError: Cannot read property 'log' of undefined
+    at handleProxyApiRes (d:/learn-2018/api-supervisor/app/pipeline/proxyPipeline.js:40:25)
+    at handleProxyApiRes.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at d:\learn-2018\api-supervisor\node_modules\co\index.js:54:5
+    at new Promise (<anonymous>)
+    at co (d:\learn-2018\api-supervisor\node_modules\co\index.js:50:10)
+    at createPromise (d:\learn-2018\api-supervisor\node_modules\co\index.js:30:15)
+    at Pipeline.execute (d:/learn-2018/api-supervisor/app/pipeline/index.js:27:32)
+    at execute.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at <anonymous>
+[2018-07-04T19:18:19.721] [ERROR] cheese - TypeError: Cannot read property 'log' of undefined
+    at handleProxyApiRes (d:/learn-2018/api-supervisor/app/pipeline/proxyPipeline.js:40:25)
+    at handleProxyApiRes.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at d:\learn-2018\api-supervisor\node_modules\co\index.js:54:5
+    at new Promise (<anonymous>)
+    at co (d:\learn-2018\api-supervisor\node_modules\co\index.js:50:10)
+    at createPromise (d:\learn-2018\api-supervisor\node_modules\co\index.js:30:15)
+    at Pipeline.execute (d:/learn-2018/api-supervisor/app/pipeline/index.js:27:32)
+    at execute.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at <anonymous>
+[2018-07-04T19:18:19.766] [ERROR] cheese - TypeError: Cannot read property 'log' of undefined
+    at handleProxyApiRes (d:/learn-2018/api-supervisor/app/pipeline/proxyPipeline.js:40:25)
+    at handleProxyApiRes.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at d:\learn-2018\api-supervisor\node_modules\co\index.js:54:5
+    at new Promise (<anonymous>)
+    at co (d:\learn-2018\api-supervisor\node_modules\co\index.js:50:10)
+    at createPromise (d:\learn-2018\api-supervisor\node_modules\co\index.js:30:15)
+    at Pipeline.execute (d:/learn-2018/api-supervisor/app/pipeline/index.js:27:32)
+    at execute.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at <anonymous>
+[2018-07-04T19:53:31.513] [ERROR] cheese - TypeError: Cannot read property 'log' of undefined
+    at handleProxyApiRes (d:/learn-2018/api-supervisor/app/pipeline/proxyPipeline.js:40:25)
+    at handleProxyApiRes.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at d:\learn-2018\api-supervisor\node_modules\co\index.js:54:5
+    at new Promise (<anonymous>)
+    at co (d:\learn-2018\api-supervisor\node_modules\co\index.js:50:10)
+    at createPromise (d:\learn-2018\api-supervisor\node_modules\co\index.js:30:15)
+    at Pipeline.execute (d:/learn-2018/api-supervisor/app/pipeline/index.js:27:32)
+    at execute.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at <anonymous>
+[2018-07-05T17:40:07.285] [ERROR] cheese - ReferenceError: content is not defined
+    at propertyFilter (d:/learn-2018/api-supervisor/app/pipeline/proxyPipeline.js:14:17)
+    at objectsDiffFilter (d:\learn-2018\api-supervisor\node_modules\jsondiffpatch\src\filters\nested.js:39:28)
+    at Pipe.process (d:\learn-2018\api-supervisor\node_modules\jsondiffpatch\dist\jsondiffpatch.cjs.js:209:9)
+    at Processor.process (d:\learn-2018\api-supervisor\node_modules\jsondiffpatch\src\processor.js:50:16)
+    at DiffPatcher.diff (d:\learn-2018\api-supervisor\node_modules\jsondiffpatch\src\diffpatcher.js:60:27)
+    at handleProxyApiRes (d:/learn-2018/api-supervisor/app/pipeline/proxyPipeline.js:31:31)
+    at handleProxyApiRes.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at d:\learn-2018\api-supervisor\node_modules\co\index.js:54:5
+    at new Promise (<anonymous>)
+    at co (d:\learn-2018\api-supervisor\node_modules\co\index.js:50:10)
+    at createPromise (d:\learn-2018\api-supervisor\node_modules\co\index.js:30:15)
+    at Pipeline.execute (d:/learn-2018/api-supervisor/app/pipeline/index.js:27:32)
+    at execute.next (<anonymous>)
+    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
+    at <anonymous>
