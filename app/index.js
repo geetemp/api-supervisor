@@ -1,7 +1,6 @@
 import { setReqPath } from "./utils";
 import cache from "./cache";
 import logger from "./logger";
-import { transferTemplate } from "./utils";
 const fs = require("fs");
 const join = require("path").join;
 const bodyParser = require("body-parser");

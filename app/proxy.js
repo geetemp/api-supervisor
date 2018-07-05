@@ -46,7 +46,6 @@ function getProxyPaths(projects) {
  * @param {*} req
  */
 const filter = function(pathname, req) {
-  console.log("project", cache.getState().projects);
   const proxyPaths = getProxyPaths(cache.getState().projects);
   let isMath = false;
   for (const proxyPath of proxyPaths) {
