@@ -1,9 +1,9 @@
 import express from "express";
 import proxy from "http-proxy-middleware";
 import proxyPipeline from "./pipeline/proxyPipeline";
-import logger from "./logger";
-import { setReqPath } from "./utils";
-import cache from "./cache";
+import logger from "../lib/logger";
+import { setReqPath } from "../lib/utils";
+import cache from "../lib/cache";
 
 const app = express();
 const appConfig = require("../config");

@@ -1,6 +1,6 @@
 import apiStackStore from "../store/apiStack";
 import apiStatusStore from "../store/apiStatus";
-import { getTimestamp, sortObjectKeys } from "../utils";
+import { getTimestamp, sortObjectKeys } from "../../lib/utils";
 const md5 = require("md5");
 const { wrap: async } = require("co");
 

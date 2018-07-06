@@ -1,19 +1,9 @@
 import Pipeline from "./index";
 import { findApi, findApiStatus, findApiStack } from "./baseHandles";
 import { storeProxiedServerBack } from "../service/apiService";
-import { toJSONSchema } from "../utils";
+import { toJSONSchema } from "../../lib/utils";
+import jsondiffpatch, { diffpatcher } from "../../lib/jsondiffpatch";
 const { wrap: async } = require("co");
-const Jsondiffpatch = require("jsondiffpatch");
-const jsondiffpatch = Jsondiffpatch.create({
-  propertyFilter: function(name, context) {
-    /*
-     this optional function can be specified to ignore object properties (eg. volatile data)
-      name: property name, present in either context.left or context.right objects
-      context: the diff context (has context.left and context.right objects)
-    */
-    return context.right[name] !== "Null" && context.left[name] !== "Null";
-  }
-});
 
 /**
  * 处理api代理返回结果
@@ -26,7 +16,8 @@ function* handleProxyApiRes(req, res) {
   const { proxiedServerBack, apiRes } = res.locals;
   const proxiedSBackSchema = toJSONSchema(JSON.stringify(proxiedServerBack));
   const apiResSchema = toJSONSchema(JSON.stringify(apiRes.result));
-  const delta = jsondiffpatch.diff(apiResSchema, proxiedSBackSchema);
+  const delta = diffpatcher.diff(apiResSchema, proxiedSBackSchema);
+
   const { apiStatus } = res.locals;
   //存储被代理接口数据
   storeProxiedServerBack(
@@ -37,7 +28,8 @@ function* handleProxyApiRes(req, res) {
     undefined,
     delta !== undefined
   );
-  Jsondiffpatch.console.log(delta);
+  // jsondiffpatch.console.log(delta);
+  console.log(delta);
   delta ? res.set("diff", JSON.stringify(delta)) : void 0;
   res.status("200").send(proxiedServerBack);
 }
