@@ -1,4 +1,4 @@
-import { filterUndefined } from "../utils";
+import { filterUndefined } from "../../lib/utils";
 const mongoose = require("mongoose");
 const Api = mongoose.model("Api");
 const { wrap: async } = require("co");

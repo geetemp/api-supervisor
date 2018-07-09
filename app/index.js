@@ -1,6 +1,6 @@
-import { setReqPath } from "./utils";
-import cache from "./cache";
-import logger from "./logger";
+import { setReqPath } from "../lib/utils";
+import cache from "../lib/cache";
+import logger from "../lib/logger";
 const fs = require("fs");
 const join = require("path").join;
 const bodyParser = require("body-parser");
