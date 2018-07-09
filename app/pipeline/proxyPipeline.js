@@ -2,8 +2,11 @@ import Pipeline from "./index";
 import { findApi, findApiStatus, findApiStack } from "./baseHandles";
 import { storeProxiedServerBack } from "../service/apiService";
 import { toJSONSchema } from "../../lib/utils";
+import Repairer, { RepairItem } from "../repairer";
 import jsondiffpatch, { diffpatcher } from "../../lib/jsondiffpatch";
+import apiStackStore from "../store/apiStack";
 const { wrap: async } = require("co");
+const md5 = require("md5");
 
 /**
  * 处理api代理返回结果
@@ -17,26 +20,95 @@ function* handleProxyApiRes(req, res) {
   const proxiedSBackSchema = toJSONSchema(JSON.stringify(proxiedServerBack));
   const apiResSchema = toJSONSchema(JSON.stringify(apiRes.result));
   const delta = diffpatcher.diff(apiResSchema, proxiedSBackSchema);
-
+  const cloneProxiedServerBack = JSON.parse(JSON.stringify(proxiedServerBack));
+  repairResult(delta, res, apiRes, cloneProxiedServerBack);
   const { apiStatus } = res.locals;
   //存储被代理接口数据
   storeProxiedServerBack(
-    proxiedSBackSchema,
-    proxiedServerBack,
+    toJSONSchema(JSON.stringify(cloneProxiedServerBack)),
+    cloneProxiedServerBack,
     apiStatus,
     {},
     undefined,
-    delta !== undefined
+    delta !== undefined && hasDiff(delta)
   );
-  // jsondiffpatch.console.log(delta);
-  console.log(delta);
-  delta ? res.set("diff", JSON.stringify(delta)) : void 0;
+  jsondiffpatch.console.log(delta);
+  delta && hasDiff(delta) ? res.set("diff", JSON.stringify(delta)) : void 0;
   res.status("200").send(proxiedServerBack);
 }
 
-function response(req, res) {
-  const { proxiedServerBack } = res.locals;
-  res.json(proxiedServerBack);
+function hasDiff(delta) {
+  if (Array.isArray(delta)) {
+    hasDiff.yes = true;
+  } else if (typeof delta === "object") {
+    Object.keys(delta).forEach(key => {
+      return hasDiff(delta[key]);
+    });
+  }
+  return hasDiff.yes;
+}
+
+/**
+ * 修补接口结果与差异
+ */
+export function repairResult(delta, res, apiRes, proxiedServerBack) {
+  //空数组提醒
+  const emptyArrayFields = [];
+  const emptyArrayWarn = new RepairItem(
+    left => {
+      if (left === "Array") return true;
+    },
+    right => {
+      if (right === "Array") return true;
+    },
+    (diff, keyPaths) => {
+      const keyPathStr = keyPaths.join(".");
+      eval(`delete delta.${keyPathStr}`);
+      emptyArrayFields.push(keyPathStr);
+    }
+  );
+
+  //左边空数组修补
+  const leftEmptyArrayRepair = new RepairItem(
+    left => {
+      if (left === "Array") return true;
+    },
+    right => {
+      if (right.type && right.type === "Array") return true;
+    },
+    (diff, keyPaths) => {
+      const keyPathStr = keyPaths.join(".");
+      eval(`delete delta.${keyPathStr}`);
+      eval(`apiRes.result.${keyPathStr}=proxiedServerBack.${keyPathStr}`);
+    }
+  );
+
+  //右边空数组忽略差异
+  const rightEmptyArrayIgnore = new RepairItem(
+    left => {
+      if (right.type && right.type === "Array") return true;
+    },
+    right => {
+      if (right === "Array") return true;
+    },
+    (diff, keyPaths) => {
+      const keyPathStr = keyPaths.join(".");
+      eval(`delete delta.${keyPathStr}`);
+      eval(`proxiedServerBack.${keyPathStr}=apiRes.result.${keyPathStr}`);
+    }
+  );
+
+  const repairer = new Repairer();
+  repairer.regist(emptyArrayWarn);
+  repairer.regist(leftEmptyArrayRepair);
+  repairer.regist(rightEmptyArrayIgnore);
+  repairer.execute(delta).after(() => {
+    apiStackStore.update(apiRes);
+    res.set(
+      `warn-emptyArray`,
+      `field path:${emptyArrayFields} is a empty array`
+    );
+  });
 }
 
 const proxyPipeline = new Pipeline("proxy");
