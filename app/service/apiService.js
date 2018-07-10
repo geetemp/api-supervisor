@@ -44,11 +44,10 @@ function* storeProxiedServerBack(
       apiStatusStore.updateHead(apiStatus.id, apiStatus.status, id);
       init && apiStatusStore.updateStable(apiStatus.id, apiStatus.status, id);
       return willStoreStack;
+    } else {
+      apiStatusStore.updateHead(apiStatus.id, apiStatus.status, id);
     }
   }
-  // } else {
-  //   apiStatusStore.updateHead(apiStatus.id, apiStatus.status, id);
-  // }
 }
 
 storeProxiedServerBack = async(storeProxiedServerBack);
