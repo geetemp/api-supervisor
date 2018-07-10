@@ -1,80 +1,270 @@
-[2018-06-29T14:54:48.455] [ERROR] cheese - TypeError: _apiStatus2.default.getListByApiId(...).map is not a function
-    at d:/learn-2018/api-supervisor/app/routes/apis.js:31:57
-    at Generator.next (<anonymous>)
-    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
-    at <anonymous>
-    at process._tickCallback (internal/process/next_tick.js:188:7)
-[2018-06-29T14:55:44.671] [ERROR] cheese - TypeError: _apiStatus2.default.getListByApiId(...).map is not a function
-    at d:/learn-2018/api-supervisor/app/routes/apis.js:31:57
-    at Generator.next (<anonymous>)
-    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
-    at <anonymous>
-    at process._tickCallback (internal/process/next_tick.js:188:7)
-[2018-06-29T14:56:57.753] [ERROR] cheese - TypeError: _apiStatus2.default.getListByApiId(...).map is not a function
-    at d:/learn-2018/api-supervisor/app/routes/apis.js:31:57
-    at Generator.next (<anonymous>)
-    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
-    at <anonymous>
-    at process._tickCallback (internal/process/next_tick.js:188:7)
-[2018-06-29T14:57:44.030] [ERROR] cheese - TypeError: _apiStatus2.default.getListByApiId(...).map is not a function
-    at d:/learn-2018/api-supervisor/app/routes/apis.js:31:57
-    at Generator.next (<anonymous>)
-    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
-    at <anonymous>
-    at process._tickCallback (internal/process/next_tick.js:188:7)
-[2018-06-29T14:58:41.104] [ERROR] cheese - TypeError: _apiStatus2.default.getListByApiId(...).map is not a function
-    at d:/learn-2018/api-supervisor/app/routes/apis.js:31:57
-    at Generator.next (<anonymous>)
-    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
-    at <anonymous>
-    at process._tickCallback (internal/process/next_tick.js:188:7)
-[2018-06-29T14:59:02.983] [ERROR] cheese - TypeError: _apiStatus2.default.getListByApiId(...).map is not a function
-    at d:/learn-2018/api-supervisor/app/routes/apis.js:31:57
-    at Generator.next (<anonymous>)
-    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
-    at <anonymous>
-    at process._tickCallback (internal/process/next_tick.js:188:7)
-[2018-06-29T14:59:21.435] [ERROR] cheese - TypeError: _apiStatus2.default.getListByApiId(...).map is not a function
-    at d:/learn-2018/api-supervisor/app/routes/apis.js:31:57
-    at Generator.next (<anonymous>)
-    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
-    at <anonymous>
-    at process._tickCallback (internal/process/next_tick.js:188:7)
-[2018-06-29T14:59:27.938] [ERROR] cheese - TypeError: _apiStatus2.default.getListByApiId(...).map is not a function
-    at d:/learn-2018/api-supervisor/app/routes/apis.js:31:57
-    at Generator.next (<anonymous>)
-    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
-    at <anonymous>
-    at process._tickCallback (internal/process/next_tick.js:188:7)
-[2018-06-29T14:59:41.067] [ERROR] cheese - TypeError: _apiStatus2.default.getListByApiId(...).map is not a function
-    at d:/learn-2018/api-supervisor/app/routes/apis.js:31:57
-    at Generator.next (<anonymous>)
-    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
-    at <anonymous>
-    at process._tickCallback (internal/process/next_tick.js:188:7)
-[2018-06-29T15:19:14.115] [ERROR] cheese - TypeError: _apiStack2.default.getStackByApiStatusId(...).map is not a function
-    at d:/learn-2018/api-supervisor/app/routes/apis.js:61:20
-    at Generator.next (<anonymous>)
-    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
-    at <anonymous>
-    at process._tickCallback (internal/process/next_tick.js:188:7)
-[2018-06-29T15:30:24.357] [ERROR] cheese - TypeError: Cannot read property 'result' of undefined
-    at handleProxyApiRes (d:/learn-2018/api-supervisor/app/pipeline/proxyPipeline.js:21:59)
-    at handleProxyApiRes.next (<anonymous>)
-    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
-    at d:\learn-2018\api-supervisor\node_modules\co\index.js:54:5
+[2018-07-03T14:55:16.453] [ERROR] cheese - TypeError: Cannot read property 'split' of null
+    at required (E:\workspace\api-supervisor\node_modules\requires-port\index.js:13:23)
+    at Object.common.setupOutgoing (E:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\common.js:101:7)
+    at Array.stream (E:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\passes\web-incoming.js:127:14)
+    at ProxyServer.<anonymous> (E:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\index.js:81:21)
+    at middleware (E:\workspace\api-supervisor\node_modules\http-proxy-middleware\lib\index.js:41:13)
+    at Layer.handle [as handle_request] (E:\workspace\api-supervisor\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:317:13)
+    at E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:275:10)
+    at expressInit (E:\workspace\api-supervisor\node_modules\express\lib\middleware\init.js:40:5)
+    at Layer.handle [as handle_request] (E:\workspace\api-supervisor\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:317:13)
+    at E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:275:10)
+[2018-07-03T14:55:22.781] [ERROR] cheese - TypeError: Cannot read property 'split' of null
+    at required (E:\workspace\api-supervisor\node_modules\requires-port\index.js:13:23)
+    at Object.common.setupOutgoing (E:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\common.js:101:7)
+    at Array.stream (E:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\passes\web-incoming.js:127:14)
+    at ProxyServer.<anonymous> (E:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\index.js:81:21)
+    at middleware (E:\workspace\api-supervisor\node_modules\http-proxy-middleware\lib\index.js:41:13)
+    at Layer.handle [as handle_request] (E:\workspace\api-supervisor\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:317:13)
+    at E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:275:10)
+    at expressInit (E:\workspace\api-supervisor\node_modules\express\lib\middleware\init.js:40:5)
+    at Layer.handle [as handle_request] (E:\workspace\api-supervisor\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:317:13)
+    at E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:275:10)
+[2018-07-03T14:55:28.342] [ERROR] cheese - TypeError: Cannot read property 'split' of null
+    at required (E:\workspace\api-supervisor\node_modules\requires-port\index.js:13:23)
+    at Object.common.setupOutgoing (E:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\common.js:101:7)
+    at Array.stream (E:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\passes\web-incoming.js:127:14)
+    at ProxyServer.<anonymous> (E:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\index.js:81:21)
+    at middleware (E:\workspace\api-supervisor\node_modules\http-proxy-middleware\lib\index.js:41:13)
+    at Layer.handle [as handle_request] (E:\workspace\api-supervisor\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:317:13)
+    at E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:275:10)
+    at expressInit (E:\workspace\api-supervisor\node_modules\express\lib\middleware\init.js:40:5)
+    at Layer.handle [as handle_request] (E:\workspace\api-supervisor\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:317:13)
+    at E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:275:10)
+[2018-07-03T15:00:27.479] [ERROR] cheese - TypeError: Cannot read property 'split' of null
+    at required (E:\workspace\api-supervisor\node_modules\requires-port\index.js:13:23)
+    at Object.common.setupOutgoing (E:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\common.js:101:7)
+    at Array.stream (E:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\passes\web-incoming.js:127:14)
+    at ProxyServer.<anonymous> (E:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\index.js:81:21)
+    at middleware (E:\workspace\api-supervisor\node_modules\http-proxy-middleware\lib\index.js:41:13)
+    at Layer.handle [as handle_request] (E:\workspace\api-supervisor\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:317:13)
+    at E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:275:10)
+    at expressInit (E:\workspace\api-supervisor\node_modules\express\lib\middleware\init.js:40:5)
+    at Layer.handle [as handle_request] (E:\workspace\api-supervisor\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:317:13)
+    at E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:275:10)
+[2018-07-03T15:05:55.951] [ERROR] cheese - TypeError: Cannot read property 'split' of null
+    at required (E:\workspace\api-supervisor\node_modules\requires-port\index.js:13:23)
+    at Object.common.setupOutgoing (E:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\common.js:101:7)
+    at Array.stream (E:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\passes\web-incoming.js:127:14)
+    at ProxyServer.<anonymous> (E:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\index.js:81:21)
+    at middleware (E:\workspace\api-supervisor\node_modules\http-proxy-middleware\lib\index.js:41:13)
+    at Layer.handle [as handle_request] (E:\workspace\api-supervisor\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:317:13)
+    at E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:275:10)
+    at expressInit (E:\workspace\api-supervisor\node_modules\express\lib\middleware\init.js:40:5)
+    at Layer.handle [as handle_request] (E:\workspace\api-supervisor\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:317:13)
+    at E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:275:10)
+[2018-07-03T15:07:29.657] [ERROR] cheese - TypeError: Cannot read property 'split' of null
+    at required (E:\workspace\api-supervisor\node_modules\requires-port\index.js:13:23)
+    at Object.common.setupOutgoing (E:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\common.js:101:7)
+    at Array.stream (E:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\passes\web-incoming.js:127:14)
+    at ProxyServer.<anonymous> (E:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\index.js:81:21)
+    at middleware (E:\workspace\api-supervisor\node_modules\http-proxy-middleware\lib\index.js:41:13)
+    at Layer.handle [as handle_request] (E:\workspace\api-supervisor\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:317:13)
+    at E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:275:10)
+    at expressInit (E:\workspace\api-supervisor\node_modules\express\lib\middleware\init.js:40:5)
+    at Layer.handle [as handle_request] (E:\workspace\api-supervisor\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:317:13)
+    at E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\workspace\api-supervisor\node_modules\express\lib\router\index.js:275:10)
+[2018-07-03T15:07:52.622] [ERROR] cheese - TypeError: Cannot read property 'split' of null
+    at required (e:\workspace\api-supervisor\node_modules\requires-port\index.js:13:23)
+    at Object.common.setupOutgoing (e:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\common.js:101:7)
+    at Array.stream (e:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\passes\web-incoming.js:127:14)
+    at ProxyServer.<anonymous> (e:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\index.js:81:21)
+    at middleware (e:\workspace\api-supervisor\node_modules\http-proxy-middleware\lib\index.js:41:13)
+    at Layer.handle [as handle_request] (e:\workspace\api-supervisor\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:317:13)
+    at e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:335:12)
+    at next (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:275:10)
+    at expressInit (e:\workspace\api-supervisor\node_modules\express\lib\middleware\init.js:40:5)
+    at Layer.handle [as handle_request] (e:\workspace\api-supervisor\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:317:13)
+    at e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:335:12)
+    at next (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:275:10)
+[2018-07-03T15:07:54.802] [ERROR] cheese - TypeError: Cannot read property 'split' of null
+    at required (e:\workspace\api-supervisor\node_modules\requires-port\index.js:13:23)
+    at Object.common.setupOutgoing (e:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\common.js:101:7)
+    at Array.stream (e:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\passes\web-incoming.js:127:14)
+    at ProxyServer.<anonymous> (e:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\index.js:81:21)
+    at middleware (e:\workspace\api-supervisor\node_modules\http-proxy-middleware\lib\index.js:41:13)
+    at Layer.handle [as handle_request] (e:\workspace\api-supervisor\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:317:13)
+    at e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:335:12)
+    at next (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:275:10)
+    at expressInit (e:\workspace\api-supervisor\node_modules\express\lib\middleware\init.js:40:5)
+    at Layer.handle [as handle_request] (e:\workspace\api-supervisor\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:317:13)
+    at e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:335:12)
+    at next (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:275:10)
+[2018-07-03T15:08:12.030] [ERROR] cheese - TypeError: Cannot read property 'split' of null
+    at required (e:\workspace\api-supervisor\node_modules\requires-port\index.js:13:23)
+    at Object.common.setupOutgoing (e:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\common.js:101:7)
+    at Array.stream (e:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\passes\web-incoming.js:127:14)
+    at ProxyServer.<anonymous> (e:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\index.js:81:21)
+    at middleware (e:\workspace\api-supervisor\node_modules\http-proxy-middleware\lib\index.js:41:13)
+    at Layer.handle [as handle_request] (e:\workspace\api-supervisor\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:317:13)
+    at e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:335:12)
+    at next (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:275:10)
+    at expressInit (e:\workspace\api-supervisor\node_modules\express\lib\middleware\init.js:40:5)
+    at Layer.handle [as handle_request] (e:\workspace\api-supervisor\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:317:13)
+    at e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:335:12)
+    at next (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:275:10)
+[2018-07-03T15:08:26.400] [ERROR] cheese - TypeError: Cannot read property 'split' of null
+    at required (e:\workspace\api-supervisor\node_modules\requires-port\index.js:13:23)
+    at Object.common.setupOutgoing (e:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\common.js:101:7)
+    at Array.stream (e:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\passes\web-incoming.js:127:14)
+    at ProxyServer.<anonymous> (e:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\index.js:81:21)
+    at middleware (e:\workspace\api-supervisor\node_modules\http-proxy-middleware\lib\index.js:41:13)
+    at Layer.handle [as handle_request] (e:\workspace\api-supervisor\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:317:13)
+    at e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:335:12)
+    at next (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:275:10)
+    at expressInit (e:\workspace\api-supervisor\node_modules\express\lib\middleware\init.js:40:5)
+    at Layer.handle [as handle_request] (e:\workspace\api-supervisor\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:317:13)
+    at e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:335:12)
+    at next (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:275:10)
+[2018-07-03T15:08:27.434] [ERROR] cheese - TypeError: Cannot read property 'split' of null
+    at required (e:\workspace\api-supervisor\node_modules\requires-port\index.js:13:23)
+    at Object.common.setupOutgoing (e:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\common.js:101:7)
+    at Array.stream (e:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\passes\web-incoming.js:127:14)
+    at ProxyServer.<anonymous> (e:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\index.js:81:21)
+    at middleware (e:\workspace\api-supervisor\node_modules\http-proxy-middleware\lib\index.js:41:13)
+    at Layer.handle [as handle_request] (e:\workspace\api-supervisor\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:317:13)
+    at e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:335:12)
+    at next (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:275:10)
+    at expressInit (e:\workspace\api-supervisor\node_modules\express\lib\middleware\init.js:40:5)
+    at Layer.handle [as handle_request] (e:\workspace\api-supervisor\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:317:13)
+    at e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:335:12)
+    at next (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:275:10)
+[2018-07-03T15:08:56.954] [ERROR] cheese - TypeError: Cannot read property 'split' of null
+    at required (e:\workspace\api-supervisor\node_modules\requires-port\index.js:13:23)
+    at Object.common.setupOutgoing (e:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\common.js:101:7)
+    at Array.stream (e:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\passes\web-incoming.js:127:14)
+    at ProxyServer.<anonymous> (e:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\index.js:81:21)
+    at middleware (e:\workspace\api-supervisor\node_modules\http-proxy-middleware\lib\index.js:41:13)
+    at Layer.handle [as handle_request] (e:\workspace\api-supervisor\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:317:13)
+    at e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:335:12)
+    at next (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:275:10)
+    at expressInit (e:\workspace\api-supervisor\node_modules\express\lib\middleware\init.js:40:5)
+    at Layer.handle [as handle_request] (e:\workspace\api-supervisor\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:317:13)
+    at e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:335:12)
+    at next (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:275:10)
+[2018-07-03T15:10:16.708] [ERROR] cheese - TypeError: Cannot read property 'split' of null
+    at required (e:\workspace\api-supervisor\node_modules\requires-port\index.js:13:23)
+    at Object.common.setupOutgoing (e:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\common.js:101:7)
+    at Array.stream (e:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\passes\web-incoming.js:127:14)
+    at ProxyServer.<anonymous> (e:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\index.js:81:21)
+    at middleware (e:\workspace\api-supervisor\node_modules\http-proxy-middleware\lib\index.js:41:13)
+    at Layer.handle [as handle_request] (e:\workspace\api-supervisor\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:317:13)
+    at e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:335:12)
+    at next (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:275:10)
+    at expressInit (e:\workspace\api-supervisor\node_modules\express\lib\middleware\init.js:40:5)
+    at Layer.handle [as handle_request] (e:\workspace\api-supervisor\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:317:13)
+    at e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:335:12)
+    at next (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:275:10)
+[2018-07-03T15:13:23.280] [ERROR] cheese - TypeError: Cannot read property 'split' of null
+    at required (e:\workspace\api-supervisor\node_modules\requires-port\index.js:13:23)
+    at Object.common.setupOutgoing (e:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\common.js:101:7)
+    at Array.stream (e:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\passes\web-incoming.js:127:14)
+    at ProxyServer.<anonymous> (e:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\index.js:81:21)
+    at middleware (e:\workspace\api-supervisor\node_modules\http-proxy-middleware\lib\index.js:41:13)
+    at Layer.handle [as handle_request] (e:\workspace\api-supervisor\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:317:13)
+    at e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:335:12)
+    at next (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:275:10)
+    at expressInit (e:\workspace\api-supervisor\node_modules\express\lib\middleware\init.js:40:5)
+    at Layer.handle [as handle_request] (e:\workspace\api-supervisor\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:317:13)
+    at e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:335:12)
+    at next (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:275:10)
+[2018-07-03T15:13:37.183] [ERROR] cheese - TypeError: Cannot read property 'split' of null
+    at required (e:\workspace\api-supervisor\node_modules\requires-port\index.js:13:23)
+    at Object.common.setupOutgoing (e:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\common.js:101:7)
+    at Array.stream (e:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\passes\web-incoming.js:127:14)
+    at ProxyServer.<anonymous> (e:\workspace\api-supervisor\node_modules\http-proxy\lib\http-proxy\index.js:81:21)
+    at middleware (e:\workspace\api-supervisor\node_modules\http-proxy-middleware\lib\index.js:41:13)
+    at Layer.handle [as handle_request] (e:\workspace\api-supervisor\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:317:13)
+    at e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:335:12)
+    at next (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:275:10)
+    at expressInit (e:\workspace\api-supervisor\node_modules\express\lib\middleware\init.js:40:5)
+    at Layer.handle [as handle_request] (e:\workspace\api-supervisor\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:317:13)
+    at e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:335:12)
+    at next (e:\workspace\api-supervisor\node_modules\express\lib\router\index.js:275:10)
+[2018-07-04T10:56:15.798] [ERROR] cheese - TypeError: _cache2.default.getStore is not a function
+    at findApi (e:/workspace/api-supervisor/app/pipeline/baseHandles.js:40:25)
+    at findApi.next (<anonymous>)
+    at onFulfilled (e:\workspace\api-supervisor\node_modules\co\index.js:65:19)
+    at e:\workspace\api-supervisor\node_modules\co\index.js:54:5
     at new Promise (<anonymous>)
-    at co (d:\learn-2018\api-supervisor\node_modules\co\index.js:50:10)
-    at createPromise (d:\learn-2018\api-supervisor\node_modules\co\index.js:30:15)
-    at Pipeline.execute (d:/learn-2018/api-supervisor/app/pipeline/index.js:27:32)
+    at co (e:\workspace\api-supervisor\node_modules\co\index.js:50:10)
+    at createPromise (e:\workspace\api-supervisor\node_modules\co\index.js:30:15)
+    at Pipeline.execute (e:/workspace/api-supervisor/app/pipeline/index.js:27:32)
     at execute.next (<anonymous>)
-    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:65:19)
-    at <anonymous>
-    at process._tickCallback (internal/process/next_tick.js:188:7)
-[2018-06-29T15:57:33.329] [ERROR] cheese - TypeError: You may only yield a function, promise, generator, array, or object, but the following object was passed: "undefined"
-    at next (d:\learn-2018\api-supervisor\node_modules\co\index.js:101:25)
-    at onFulfilled (d:\learn-2018\api-supervisor\node_modules\co\index.js:69:7)
-    at d:\learn-2018\api-supervisor\node_modules\co\index.js:54:5
+    at onFulfilled (e:\workspace\api-supervisor\node_modules\co\index.js:65:19)
+    at e:\workspace\api-supervisor\node_modules\co\index.js:54:5
     at new Promise (<anonymous>)
     at co (d:\learn-2018\api-supervisor\node_modules\co\index.js:50:10)
     at createPromise (d:\learn-2018\api-supervisor\node_modules\co\index.js:30:15)

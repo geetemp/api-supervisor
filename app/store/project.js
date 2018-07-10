@@ -36,7 +36,14 @@ export default {
    * 更新代理状态
    */
   update: async(function*(project) {
-    const { identity, target, status = 1, name } = project;
+    const {
+      identity,
+      target,
+      status = 1,
+      name,
+      regexlocation,
+      regex
+    } = project;
     const willUpdateDoc = {};
     if (target) {
       willUpdateDoc["proxy.target"] = target;
@@ -46,6 +53,14 @@ export default {
     }
     if (name) {
       willUpdateDoc["name"] = name;
+    }
+
+    if (regexlocation) {
+      willUpdateDoc["regexlocation"] = regexlocation;
+    }
+
+    if (regex) {
+      willUpdateDoc["regex"] = regex;
     }
     yield Project.updateOne({ identity }, willUpdateDoc);
     return yield Project.findOne({ identity }).lean();

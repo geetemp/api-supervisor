@@ -2,6 +2,7 @@ import apiStore from "../store/api";
 import apiStackStore from "../store/apiStack";
 import apiStatusStore from "../store/apiStatus";
 import { storeProxiedServerBack } from "../service/apiService";
+import cache from "../cache";
 import { toJSONSchema } from "../../lib/utils";
 const { wrap: async } = require("co");
 
@@ -36,6 +37,10 @@ function* findApi(req, res, type) {
   });
 
   let { baseUrl, rPath, method } = req;
+  const project = cache.getState().projects[0];
+  let arrayPath = rPath.split("/");
+  arrayPath.splice(project.regexlocation, 1, project.regex);
+  rPath = arrayPath.join("\\/");
   const api = yield apiStore.getOne(baseUrl.substring(1), rPath, method);
   if (api) {
     res.locals.api = api;

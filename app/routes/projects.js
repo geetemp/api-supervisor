@@ -29,7 +29,7 @@ router.post(
   "/",
   async(function*(req, res) {
     try {
-      const { name, identity, target } = req.body;
+      const { name, identity, target, regex, regexlocation } = req.body;
       const alreadyHas = yield projectStore.getOneByIdentity(identity);
       //already has
       if (alreadyHas) {
@@ -37,6 +37,8 @@ router.post(
       }
       const newProject = yield projectStore.addOne({
         name: name || "",
+        regexlocation: regexlocation || 1,
+        regex: regex || "v[0-9]_[0-9]",
         identity,
         proxy: {
           target,
@@ -56,12 +58,14 @@ router.put(
   "/",
   async(function*(req, res) {
     try {
-      const { identity, name, host, status } = req.body;
+      const { identity, name, host, status, location, regex } = req.body;
       const updatedProject = yield projectStore.update({
         identity,
         name,
         target: host,
-        status
+        status,
+        regexlocation: location,
+        regex
       });
       cache.dispatch({ type: "update", payload: updatedProject });
       res.json(transferTemplate(updatedProject));

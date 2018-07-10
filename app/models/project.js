@@ -13,6 +13,8 @@ const Schema = mongoose.Schema;
 const ProjectSchema = new Schema({
   name: { type: String, default: "", trim: true },
   identity: { type: String, default: "", trim: true, index: true },
+  regex: { type: String, default: "v[0-9]_[0-9]", trim: true },
+  regexlocation: { type: Number, default: 1, trim: true },
   proxy: {
     target: { type: String, default: "", trim: true },
     status: { type: Number, default: 1, trim: true }
@@ -26,6 +28,7 @@ ProjectSchema.path("identity").required(
   true,
   "project identity cannot be blank"
 );
+
 ProjectSchema.path("proxy.target").required(
   true,
   "project proxy.target cannot be blank"
