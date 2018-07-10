@@ -1,9 +1,9 @@
 import express from "express";
 import proxy from "http-proxy-middleware";
 import proxyPipeline from "./pipeline/proxyPipeline";
-import logger from "./logger";
-import { setReqPath } from "./utils";
-import cache from "./cache";
+import logger from "../lib/logger";
+import { setReqPath } from "../lib/utils";
+import cache from "../lib/cache";
 
 const app = express();
 const appConfig = require("../config");
@@ -93,7 +93,6 @@ app.use(
     selfHandleResponse: true,
     onProxyRes: (proxyRes, req, res) => {
       const contentType = proxyRes.headers["content-type"];
-      console.log(contentType);
       const setCookie = proxyRes.headers["set-cookie"];
       if (setCookie) res.append("set-cookie", setCookie);
       let proxiedServerBack = Buffer.from([]);

@@ -3,7 +3,7 @@ import apiStackStore from "../store/apiStack";
 import apiStatusStore from "../store/apiStatus";
 import { storeProxiedServerBack } from "../service/apiService";
 import cache from "../cache";
-import { toJSONSchema } from "../utils";
+import { toJSONSchema } from "../../lib/utils";
 const { wrap: async } = require("co");
 
 /**

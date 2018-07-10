@@ -1,4 +1,4 @@
-import { isArray } from "../utils";
+import { isArray } from "../../lib/utils";
 
 /**
  * 处理管道

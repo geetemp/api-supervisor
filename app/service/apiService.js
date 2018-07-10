@@ -1,6 +1,6 @@
 import apiStackStore from "../store/apiStack";
 import apiStatusStore from "../store/apiStatus";
-import { getTimestamp, sortObjectKeys } from "../utils";
+import { getTimestamp, sortObjectKeys } from "../../lib/utils";
 const md5 = require("md5");
 const { wrap: async } = require("co");
 
@@ -28,23 +28,25 @@ function* storeProxiedServerBack(
     id,
     apiStatus.id
   );
-  if (isDiff && !apiStack) {
-    //生成待存储stack
-    const willStoreStack = {
-      id,
-      apiStatusId: apiStatus.id,
-      params,
-      resultDeclare: [],
-      result: proxiedServerBack,
-      timestamp: getTimestamp()
-    };
+  if (isDiff) {
+    if (!apiStack) {
+      //生成待存储stack
+      const willStoreStack = {
+        id,
+        apiStatusId: apiStatus.id,
+        params,
+        resultDeclare: [],
+        result: proxiedServerBack,
+        timestamp: getTimestamp()
+      };
 
-    apiStackStore.addStack(willStoreStack);
-    apiStatusStore.updateHead(apiStatus.id, apiStatus.status, id);
-    init && apiStatusStore.updateStable(apiStatus.id, apiStatus.status, id);
-    return willStoreStack;
-  } else {
-    apiStatusStore.updateHead(apiStatus.id, apiStatus.status, id);
+      apiStackStore.addStack(willStoreStack);
+      apiStatusStore.updateHead(apiStatus.id, apiStatus.status, id);
+      init && apiStatusStore.updateStable(apiStatus.id, apiStatus.status, id);
+      return willStoreStack;
+    } else {
+      apiStatusStore.updateHead(apiStatus.id, apiStatus.status, id);
+    }
   }
 }
 

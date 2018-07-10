@@ -38,6 +38,10 @@ const apiStack = {
    */
   getStackByApiStatusId: async(function*(apiStatusId) {
     return yield ApiStack.find({ apiStatusId }).lean();
+  }),
+
+  update: async(function*(stack) {
+    yield ApiStack.updateOne({ id: stack.id }, stack);
   })
 };
 

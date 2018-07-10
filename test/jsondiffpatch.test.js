@@ -1,4 +1,5 @@
 var jsondiffpatch = require("jsondiffpatch");
+import jsondiffpatch, { diffpatcher } from "../lib/jsondiffpatch";
 
 test("jsondiffpatch try test", () => {
   var left = { a: 3, b: 4 };
@@ -40,4 +41,41 @@ test("jsondiffpatch api test", () => {
 
   var delta2 = jsondiffpatch.diff(country, country2);
   expect(delta2).toBe(undefined);
+});
+
+test("diff some special", () => {
+  var left = {
+    code: "Number",
+    data: { type: "Object", name: "Null", edu: "Array" },
+    msg: "String"
+  };
+  var right = {
+    code: "Number",
+    data: {
+      type: "Object",
+      name: "String",
+      age: "String",
+      edu: { type: "Array", school: "String", address: "String" }
+    },
+    msg: "String"
+  };
+  var delta = jsondiffpatch.diff(left, right);
+  // jsondiffpatch.console.log(delta);
+  console.log(JSON.stringify(delta));
+});
+
+test("diff empty array", () => {
+  var left = {
+    code: "Number",
+    data: { type: "Object", name: "Null" },
+    msg: "String"
+  };
+  var right = {
+    code: "Number",
+    data: { type: "Object", name: "Null", edu: "Array" },
+    msg: "String"
+  };
+  var delta = diffpatcher.diff(left, right);
+  // jsondiffpatch.console.log(delta);
+  console.log(JSON.stringify(delta));
 });

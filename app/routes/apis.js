@@ -2,8 +2,8 @@ import express from "express";
 import apiStore from "../store/api";
 import apiStatusStore from "../store/apiStatus";
 import apiStackStore from "../store/apiStack";
-import { transferTemplate } from "../utils";
-import { toJSONSchema } from "../utils";
+import { transferTemplate } from "../../lib/utils";
+import { toJSONSchema } from "../../lib/utils";
 const router = express.Router();
 const jsondiffpatch = require("jsondiffpatch");
 const { wrap: async } = require("co");
@@ -47,20 +47,17 @@ router.get(
   "/stack",
   async(function*(req, res, next) {
     try {
-      const { workProject, url, method, code } = req.query;
+      const { workProject, url, method, code, desc } = req.query;
       const api = yield apiStore.getOne(workProject, url, method);
       if (api) {
         const apiStatus = yield apiStatusStore.getOneByApiStatus(
           api.id,
           parseInt(code)
         );
-        const apiStacks = yield apiStackStore.getStackByApiStatusId(
-          apiStatus.id
-        );
+        let apiStacks = yield apiStackStore.getStackByApiStatusId(apiStatus.id);
+        apiStacks = apiStacks || [];
         res.json(
-          transferTemplate(
-            apiStatus ? apiStacks.map(item => item.id).reverse() : []
-          )
+          transferTemplate(!desc ? apiStacks.map(item => item.id) : apiStacks)
         );
       } else {
         res.json(transferTemplate([]));
