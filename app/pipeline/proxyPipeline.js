@@ -30,13 +30,17 @@ function* handleProxyApiRes(req, res) {
     apiStatus,
     {},
     undefined,
-    delta !== undefined && hasDiff(delta)
+    delta !== undefined && !!hasDiff(delta)
   );
-  jsondiffpatch.console.log(delta);
-  delta && hasDiff(delta) ? res.set("diff", JSON.stringify(delta)) : void 0;
+  // jsondiffpatch.console.log(delta);
+  delta && !!hasDiff(delta) ? res.set("diff", JSON.stringify(delta)) : void 0;
   res.status("200").send(proxiedServerBack);
 }
 
+/**
+ * 判断是否有差异
+ * @param {*} delta
+ */
 function hasDiff(delta) {
   if (Array.isArray(delta)) {
     hasDiff.yes = true;
@@ -52,8 +56,9 @@ function hasDiff(delta) {
  * 修补接口结果与差异
  */
 export function repairResult(delta, res, apiRes, proxiedServerBack) {
+  const emptyArrayFields = []; //空数组字段路径统计
+  let fillEmptyArray = false;
   //空数组提醒
-  const emptyArrayFields = [];
   const emptyArrayWarn = new RepairItem(
     left => {
       if (left === "Array") return true;
@@ -74,9 +79,10 @@ export function repairResult(delta, res, apiRes, proxiedServerBack) {
       if (left === "Array") return true;
     },
     right => {
-      if (right.type && right.type === "Array") return true;
+      if (right["su-type"] && right["su-type"] === "Array") return true;
     },
     (diff, keyPaths) => {
+      fillEmptyArray = true;
       const keyPathStr = keyPaths.join(".");
       eval(`delete delta.${keyPathStr}`);
       eval(`apiRes.result.${keyPathStr}=proxiedServerBack.${keyPathStr}`);
@@ -86,7 +92,7 @@ export function repairResult(delta, res, apiRes, proxiedServerBack) {
   //右边空数组忽略差异
   const rightEmptyArrayIgnore = new RepairItem(
     left => {
-      if (right.type && right.type === "Array") return true;
+      if (left["su-type"] && left["su-type"] === "Array") return true;
     },
     right => {
       if (right === "Array") return true;
@@ -103,11 +109,9 @@ export function repairResult(delta, res, apiRes, proxiedServerBack) {
   repairer.regist(leftEmptyArrayRepair);
   repairer.regist(rightEmptyArrayIgnore);
   repairer.execute(delta).after(() => {
-    apiStackStore.update(apiRes);
-    res.set(
-      `warn-emptyArray`,
-      `field path:${emptyArrayFields} is a empty array`
-    );
+    fillEmptyArray ? apiStackStore.update(apiRes) : !1;
+    if (emptyArrayFields.length)
+      res.set(`warn-emptyArray`, `Note:${emptyArrayFields} is a empty array`);
   });
 }
 
