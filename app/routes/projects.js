@@ -37,8 +37,8 @@ router.post(
       }
       const newProject = yield projectStore.addOne({
         name: name || "",
-        regexlocation: regexlocation || 1,
-        regex: regex || "v[0-9]_[0-9]",
+        regexlocation: regexlocation || 0,
+        regex: regex || "",
         identity,
         proxy: {
           target,
@@ -58,13 +58,13 @@ router.put(
   "/",
   async(function*(req, res) {
     try {
-      const { identity, name, host, status, location, regex } = req.body;
+      const { identity, name, host, status, regexlocation, regex } = req.body;
       const updatedProject = yield projectStore.update({
         identity,
         name,
         target: host,
         status,
-        regexlocation: location,
+        regexlocation,
         regex
       });
       cache.dispatch({ type: "update", payload: updatedProject });

@@ -6,8 +6,7 @@ const { wrap: async } = require("co");
 export default {
   getOne: async(function*(pro, url, method) {
     return yield Api.findOne(
-      { url: { $regex: url } }, // 正则表达式
-      filterUndefined({ pro, method })
+      { url: { $regex: url }, ...filterUndefined({ pro, method }) } // 正则表达式
     );
   }),
 

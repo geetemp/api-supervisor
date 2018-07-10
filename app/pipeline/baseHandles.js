@@ -2,7 +2,7 @@ import apiStore from "../store/api";
 import apiStackStore from "../store/apiStack";
 import apiStatusStore from "../store/apiStatus";
 import { storeProxiedServerBack } from "../service/apiService";
-import cache from "../cache";
+import cache from "../../lib/cache";
 import { toJSONSchema } from "../../lib/utils";
 const { wrap: async } = require("co");
 
@@ -37,10 +37,7 @@ function* findApi(req, res, type) {
   });
 
   let { baseUrl, rPath, method } = req;
-  const project = cache.getState().projects[0];
-  let arrayPath = rPath.split("/");
-  arrayPath.splice(project.regexlocation, 1, project.regex);
-  rPath = arrayPath.join("\\/");
+  rPath = createApiFindURL(baseUrl, rPath);
   const api = yield apiStore.getOne(baseUrl.substring(1), rPath, method);
   if (api) {
     res.locals.api = api;
@@ -48,6 +45,24 @@ function* findApi(req, res, type) {
     res.locals.api = yield notFind(req, res, type);
   }
   return res.locals.api;
+}
+
+/**
+ * 创建api查找正则表达式
+ * 兼容带版本号的url接口
+ * @param {*} baseUrl
+ * @param {*} rPath
+ */
+function createApiFindURL(baseUrl, rPath) {
+  const project = cache
+    .getState()
+    .projects.filter(pro => pro.identity === baseUrl.substring(1))[0];
+  if (project && project.regex && project.regexlocation) {
+    let arrayPath = rPath.split("/");
+    arrayPath.splice(project.regexlocation, 1, project.regex);
+    return arrayPath.join("/");
+  }
+  return rPath;
 }
 
 /**
