@@ -51,7 +51,7 @@ function initCache() {
   require("./store/project")
     .default.getList()
     .then(projects => {
-      cache.dispatch({ type: "init", payload: projects });
+      cache.dispatch({ type: "init", payload: projects || [] });
       cache.subscribe(state => {});
     });
 }
